@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "SpaceShips", "SpaceShips\SpaceShips.iceproj", "{B72071EC-F5CA-4FC1-A9B8-1A55388D7B0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B72071EC-F5CA-4FC1-A9B8-1A55388D7B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72071EC-F5CA-4FC1-A9B8-1A55388D7B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72071EC-F5CA-4FC1-A9B8-1A55388D7B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72071EC-F5CA-4FC1-A9B8-1A55388D7B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
