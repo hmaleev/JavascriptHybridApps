@@ -249,3 +249,62 @@ function handleCollisions() {
         }
     });
 }
+
+//acceleration
+
+
+// The watch id references the current `watchAcceleration`
+var watchID = null;
+
+// Wait for PhoneGap to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// PhoneGap is ready
+//
+function onDeviceReady() {
+    startWatch();
+}
+
+// Start watching the acceleration
+//
+function startWatch() {
+
+
+    var options = { frequency: 250 };
+
+    watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+}
+
+
+
+
+// onSuccess: Get a snapshot of the current acceleration
+//
+function onSuccess(acceleration) {
+    //  var element = document.getElementById('accelerometer');
+    /* element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+                         'Acceleration Y: ' + acceleration.y + '<br />' +
+                         'Acceleration Z: ' + acceleration.z + '<br />' +
+                         'Timestamp: '      + acceleration.timestamp + '<br />';*/
+    if (acceleration.x > 2) {
+        direction = "left";
+        player.shoot();
+    }
+    else if (acceleration.x < -2) {
+        direction = "right";
+        player.shoot();
+    }
+    else {
+        direction = "none";
+        player.shoot();
+
+    }
+}
+
+
+// onError: Failed to get the acceleration
+//
+function onError() {
+    alert('onError!');
+}
