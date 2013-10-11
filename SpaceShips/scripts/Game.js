@@ -43,6 +43,9 @@ var player = {
             x: this.x + this.width / 2,
             y: this.y + this.height / 2
         };
+    },
+    explode: function () {
+        this.active = false;
     }
 };
 
@@ -132,6 +135,8 @@ function draw() {
         enemy.draw();
     });
 
+    handleCollisions();
+
 }
 
 // Bullets
@@ -171,9 +176,7 @@ function Bullet(I) {
 }
 
 
-
 //Enemies
-
 
 function Enemy(I) {
     I = I || {};
@@ -183,7 +186,7 @@ function Enemy(I) {
 
     I.color = "#A2B";
 
-    I.x = Math.random() *10;
+    I.x = Math.random() *100;
     I.y = Math.random() * 33;
     I.xVelocity = Math.random() * 2;
     I.yVelocity = Math.random() * 2;
@@ -211,6 +214,38 @@ function Enemy(I) {
 
         I.active = I.active && I.inBounds();
     };
+    I.explode = function () {
+        this.active = false;
+        // Extra Credit: Add an explosion graphic
+    };
+
 
     return I;
 };
+
+//Collision
+
+function collides(a, b) {
+    return a.x < b.x + b.width &&
+           a.x + a.width > b.x &&
+           a.y < b.y + b.height &&
+           a.y + a.height > b.y;
+}
+
+function handleCollisions() {
+    playerBullets.forEach(function (bullet) {
+        enemies.forEach(function (enemy) {
+            if (collides(bullet, enemy)) {
+                enemy.explode();
+                bullet.active = false;
+            }
+        });
+    });
+
+    enemies.forEach(function (enemy) {
+        if (collides(enemy, player)) {
+            enemy.explode();
+            player.explode();
+        }
+    });
+}
