@@ -107,6 +107,7 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+    <Content Include="views\game.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Resources\" />
@@ -122,6 +123,7 @@
     <Folder Include="kendo\styles\" />
     <Folder Include="kendo\styles\images\" />
     <Folder Include="images\" />
+    <Folder Include="views\" />
     <Folder Include="Plugins\" />
     <Folder Include="scripts\" />
     <Folder Include="styles\" />

@@ -1,35 +1,32 @@
-
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta charset="utf-8" />
-        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
-        <link href="styles/GameStyles.css" rel="stylesheet" />
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/GameStyles.css" rel="stylesheet" />
 
-        <script src="cordova.js"></script>
-        <script src="kendo/js/jquery.min.js"></script>
-        <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="scripts/location.js"></script>
+    <script src="scripts/app.js"></script>
 
-    </head>
-    <body>
-         <canvas  id="canvas" >
-            Canvas is not supported
-        </canvas>
-		<div id="tempControls">
-            <div id="leftControl">
-               Left
-            </div>
-           <div id="rightControl">
-               Right       
-           </div>
-           
-        </div> 
-        <div id="accelerometer"/>
-        <img src="images/sprite2.png" id="ship" />
-        <img src="images/sprite3.png" id="asteroid" />
-        <script src="scripts/Game.js"></script>
-    </body>
+</head>
+<body>
+     <div data-role="view" data-title="Destinations" id="listview-home">
+    <ul data-role="listview" data-style="inset" data-type="group">
+        <li>
+            <ul>
+                <li ><a href="views/game.html#game-view">New Game</a></li>
+                <li ><a href="#">High Scores</a></li>
+                  <li ><a href="#">Settings</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+</body>
 </html>
+
