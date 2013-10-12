@@ -11,6 +11,9 @@ var timer = null;
 var timer2 = null;
 var timer3 = null;
 
+var ship = document.getElementById("ship");
+var asteroid = document.getElementById("asteroid");
+
 var leftArea = document.getElementById("leftControl");
 var rightArea = document.getElementById("rightControl");
 
@@ -19,15 +22,17 @@ var playerBullets = [];
 var enemies = [];
 
 var player = {
-    color: "#000",
-    x: 5,
-    y: 145,
-    width: 32,
-    height: 4,
+    color: "#FF0000",
+    x: 115,
+    y: 127,
+    width: 45,
+    height: 15,
+    score:0,
     draw: function () {
 
-        canvas.fillStyle = this.color;
-        canvas.fillRect(this.x, this.y, this.width, this.height);
+        //canvas.drawImage(ship, 0,0,93,99,player.x,player.y,player.width,player.height);
+        canvas.drawImage(ship, 0, 9, 95, 87, player.x, player.y, player.width, player.height);
+        
     },
     shoot: function () {
         var bulletPosition = this.midpoint();
@@ -52,6 +57,7 @@ var player = {
 setInterval(function () {
     update();
     draw();
+    console.log(player.score);
 }, 20);
 
 leftArea.addEventListener("touchstart", function () {
@@ -148,7 +154,7 @@ function Bullet(I) {
     I.yVelocity = -I.speed;
     I.width = 3;
     I.height = 3;
-    I.color = "#000";
+    I.color = "#FFFFFF";
 
     I.inBounds = function () {
         return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -156,8 +162,11 @@ function Bullet(I) {
     };
 
     I.draw = function () {
-        canvas.fillStyle = this.color;
-        canvas.fillRect(this.x, this.y, this.width, this.height);
+        console.log("drawed");
+        //canvas.fillStyle = this.color;
+        //canvas.fillRect(this.x, this.y, this.width, this.height);
+        canvas.drawImage(ship, 350,803,10,19, this.x, this.y, 10, 10);
+
     };
 
     I.update = function () {
@@ -186,13 +195,13 @@ function Enemy(I) {
 
     I.color = "#A2B";
 
-    I.x = Math.random() *100;
-    I.y = Math.random() * 33;
-    I.xVelocity = Math.random() * 2;
+    I.x = Math.random() *200;
+    I.y = 0;
+    I.xVelocity = 0;
     I.yVelocity = Math.random() * 2;
 
-    I.width = 32;
-    I.height = 2;
+    I.width = 20;
+    I.height = 10;
 
     I.inBounds = function() {
         return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -200,8 +209,10 @@ function Enemy(I) {
     };
 
     I.draw = function() {
-        canvas.fillStyle = this.color;
-        canvas.fillRect(this.x, this.y, this.width, this.height);
+        //canvas.fillStyle = this.color;
+        //canvas.fillRect(this.x, this.y, this.width, this.height);
+        canvas.drawImage(asteroid, 7, 5, 50, 50, this.x, this.y, this.width, this.height);
+
     };
 
     I.update = function() {
@@ -236,6 +247,7 @@ function handleCollisions() {
     playerBullets.forEach(function (bullet) {
         enemies.forEach(function (enemy) {
             if (collides(bullet, enemy)) {
+                player.score += 20;
                 enemy.explode();
                 bullet.active = false;
             }
