@@ -7,8 +7,17 @@ var textY = 50;
 var direction = null;
 var CANVAS_WIDTH = c.width;
 var CANVAS_HEIGHT = c.height;
-console.log("WIDTH: " + CANVAS_WIDTH);
-console.log("HEIGHT: " + CANVAS_HEIGHT);
+
+var highscores = [];
+var permanentStorage = window.localStorage;
+
+var res = permanentStorage.getItem("score");
+if (res!==null) {
+    console.log(highscores);
+
+}
+highscoresLength = 5;
+
 
 var timer = null;
 var timer2 = null;
@@ -27,6 +36,7 @@ var player = {
     y: 130,
     width: 45,
     height: 15,
+    score: 0,
     active: true,
     draw: function () {
 
@@ -52,20 +62,35 @@ var player = {
     },
     explode: function () {
         this.active = false;
-        //var newGame = confirm("You lost. Do you want to play another game?");
-        //if (newGame == true) {
-        //    player.active = true;
-        //    enemies = [];
 
-        //}
         navigator.notification.confirm(
-        'You are the winner!', // message
-         onConfirm,            // callback to invoke with index of button pressed
-        'Game Over',           // title
-        'Restart,Exit'         // buttonLabels
-);
+        'You are dead!',
+         onConfirm,
+        'Game Over',
+        ['Restart', 'Exit']);
 
+        highscores.sort(function (a, b) {
+            return b.score - a.score
+        })
+        console.log("Higs Scores Length: " + highscores.length);
+        if (highscores.length < 5) {
+            highscores.push({ name: 'Pesh', score: player.score });
+        }
+        else {
+            for (var i = 0; i < highscores.length; i++) {
+                if (highscores[i].score<player.score) {
+                    highscores.splice(i,0,{ name: 'Pesho11' + i, score: player.score });
+                    highscores.pop();
+                    break;
+                }
+            }
+        }
+        player.score = 0;
+        permanentStorage.setItem("score", JSON.stringify(highscores));
+       
+      //  console.log( JSON.parse(res));
     }
+    
 };
 
 setInterval(function () {
@@ -74,7 +99,7 @@ setInterval(function () {
         draw();
     }
 
-}, 20);
+}, 30);
 
 leftArea.addEventListener("touchstart", function () {
     direction = "left";
@@ -243,6 +268,7 @@ function Enemy(I) {
     };
     I.explode = function () {
         this.active = false;
+        player.score += 100;
         // Extra Credit: Add an explosion graphic
     };
 
@@ -342,5 +368,5 @@ function onSuccess(acceleration) {
 function onError() {
     //    alert('onError!');
 
-
 }
+

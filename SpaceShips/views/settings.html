@@ -1,0 +1,42 @@
+﻿<div data-role="view" data-title="Settings" id="settings-view" data-id="settings-view">
+    <ul data-role="listview" data-style="inset" data-type="group">
+        <li>Gameplay
+            <ul>
+                <li>Automatic shooting <input id="AutomaticShootingSwitch" data-role="switch"  checked="checked"/></li>
+            </ul>
+        </li>
+
+        <li>High Scores
+            <ul>
+                <li> <div class="button" data-role="button" id="DeleteHighScoresBtn">Delete all high scores</div></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+
+        var deleteHighScoresBtn = document.getElementById("DeleteHighScoresBtn");
+        console.log("Delete Btn: " + deleteHighScoresBtn);
+        var automatiShootingSwitch = document.getElementById("AutomaticShootingSwitch");
+        console.log("Automatic Switch: " + automatiShootingSwitch);
+
+        var pernamentStorage = window.localStorage;
+
+        var isAutomaticShootingEnabled = automatiShootingSwitch.checked;
+        if (isAutomaticShootingEnabled == true) {
+            pernamentStorage.setItem("automaticShooting", isAutomaticShootingEnabled);
+        }
+        else {
+            pernamentStorage.setItem("automaticShooting", isAutomaticShootingEnabled);
+        }
+
+        deleteHighScoresBtn.onclick = function () {
+            pernamentStorage.removeItem('score');
+        }
+
+       
+
+        //   pernamentStorage.setItem
+
+
+</script>
+</div>

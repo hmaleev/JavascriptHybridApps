@@ -79,6 +79,7 @@
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\Game.js" />
+    <Content Include="scripts\settings.js" />
     <Content Include="scripts\weather.js" />
     <Content Include="scripts\location.js" />
     <Content Include="scripts\login.js" />
@@ -108,6 +109,8 @@
       <TargetName>cordova.js</TargetName>
     </Content>
     <Content Include="views\game.html" />
+    <Content Include="views\highScores.html" />
+    <Content Include="views\settings.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Resources\" />
