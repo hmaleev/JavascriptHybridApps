@@ -203,7 +203,7 @@ body, html {
     color:#2e5968;
 }
 
-.km-ios .km-view .km-content.weather {
+.km-ios .km-view .weather {
     background: #5fb4ed; /* Old browsers */
     background: -moz-linear-gradient(top, #5fb4ed 0%, #0076c5 74%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5fb4ed), color-stop(74%,#0076c5)); /* Chrome,Safari4+ */
@@ -212,16 +212,12 @@ body, html {
     background: -ms-linear-gradient(top, #5fb4ed 0%,#0076c5 74%); /* IE10+ */
     background: linear-gradient(to bottom, #5fb4ed 0%,#0076c5 74%); /* W3C */
 }
-.km-flat .km-view .km-content.weather{
+.km-flat .km-view .weather{
     background:#b0b0b0;
 }
 .km-flat .km-list>li{
     box-shadow:none;
 }
-
-/*.km-view .km-content.weather .forecast-list {
-    margin:1em;
-}*/
 
 .km-ios .km-list > li,
 .km-flat .km-list>li {

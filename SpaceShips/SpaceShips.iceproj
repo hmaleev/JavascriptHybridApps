@@ -109,8 +109,9 @@
       <TargetName>cordova.js</TargetName>
     </Content>
     <Content Include="views\game.html" />
-    <Content Include="views\highScores.html" />
+    <Content Include="views\localHighScores.html" />
     <Content Include="views\settings.html" />
+    <Content Include="views\worldHighScores.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Resources\" />

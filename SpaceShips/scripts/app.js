@@ -18,4 +18,4 @@
 
         app.application.skin(mobileSkin);
     };
-})(window)
+})(window);

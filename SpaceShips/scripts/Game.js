@@ -8,14 +8,14 @@ var direction = null;
 var CANVAS_WIDTH = c.width;
 var CANVAS_HEIGHT = c.height;
 
-var highscores = [];
 var permanentStorage = window.localStorage;
-
-var res = permanentStorage.getItem("score");
-if (res!==null) {
-    console.log(highscores);
-
+var playerName = permanentStorage.getItem("playerName");
+if (playerName==null) {
+    playerName="Player 1";
 }
+
+var automaticShooting = permanentStorage.getItem("automaticShooting");
+
 highscoresLength = 5;
 
 
@@ -31,7 +31,7 @@ var playerBullets = [];
 var enemies = [];
 
 var player = {
-    // color: "#000",
+    name: playerName,
     x: 125,
     y: 130,
     width: 45,
@@ -63,30 +63,14 @@ var player = {
     explode: function () {
         this.active = false;
 
+       
+
         navigator.notification.confirm(
         'You are dead!',
          onConfirm,
         'Game Over',
         ['Restart', 'Exit']);
 
-        highscores.sort(function (a, b) {
-            return b.score - a.score
-        })
-        console.log("Higs Scores Length: " + highscores.length);
-        if (highscores.length < 5) {
-            highscores.push({ name: 'Pesh', score: player.score });
-        }
-        else {
-            for (var i = 0; i < highscores.length; i++) {
-                if (highscores[i].score<player.score) {
-                    highscores.splice(i,0,{ name: 'Pesho11' + i, score: player.score });
-                    highscores.pop();
-                    break;
-                }
-            }
-        }
-        player.score = 0;
-        permanentStorage.setItem("score", JSON.stringify(highscores));
        
       //  console.log( JSON.parse(res));
     }
@@ -101,34 +85,20 @@ setInterval(function () {
 
 }, 30);
 
-leftArea.addEventListener("touchstart", function () {
-    direction = "left";
-    clearInterval(timer2);
-    timer2 = setInterval(function () {
-        player.shoot();
-    }, 200);
-});
 
-rightArea.addEventListener("touchstart", function () {
-    direction = "right";
-    timer2 = setInterval(function () {
-        player.shoot();
-    }, 200);
+
+c.addEventListener("touchstart", function () {  
+   if(automaticShooting=="false"){
+       timer2 = setInterval(function () {
+            player.shoot();
+        }, 200);
+   }
 
 });
 
-leftArea.addEventListener("touchend", function () {
-    direction = null;
-    clearInterval(timer2);
+c.addEventListener("touchend", function () {   
+       clearInterval(timer2);
 });
-
-rightArea.addEventListener("touchend", function () {
-    direction = null;
-    clearInterval(timer2);
-
-});
-
-
 
 function update() {
     if (player.x >= 0 && player.x < 270) {
@@ -185,6 +155,7 @@ function draw() {
     handleCollisions();
 
 }
+
 
 // Bullets
 
@@ -297,6 +268,7 @@ function handleCollisions() {
 
     enemies.forEach(function (enemy) {
         if (collides(enemy, player)) {
+            Score();
             enemy.explode();
             player.explode();
         }
@@ -319,13 +291,49 @@ function onDeviceReady() {
     startWatch();
 }
 
+function Score() {
+
+    var res = permanentStorage.getItem("score");
+    if (res==null) {
+        var highscores = [];
+
+        console.log("highscores: empty");
+    }
+    else {
+        highscores = JSON.parse(res);
+        console.log(highscores);
+    }
+
+    highscores.sort(function (a, b) {
+        return b.score - a.score
+    })
+    console.log("Higs Scores Length: " + highscores.length);
+    if (highscores.length < 5) {
+        highscores.push({ name: player.name, score: player.score });
+    }
+    else {
+        for (var i = 0; i < highscores.length; i++) {
+            if (highscores[i].score < player.score) {
+                highscores.splice(i, 0, { name: player.name, score: player.score });
+                highscores.pop();
+                break;
+            }
+        }
+    }
+    player.score = 0;
+    permanentStorage.setItem("score", JSON.stringify(highscores));
+
+}
+
 function onConfirm(buttonIndex) {
+
+
     if (buttonIndex == 1) {
         player.active = true;
         enemies = [];
     }
     else {
-        window.location = "index.html";
+        window.location.href = " index.html";
     }
 }
 

@@ -1,4 +1,4 @@
-﻿var deleteHighScoresBtn = document.getElementById("DeleteHighScoresBtn");
+var deleteHighScoresBtn = document.getElementById("DeleteHighScoresBtn");
 var automatiShootingSwitch = document.getElementById("AutomaticShootingSwitch");
 var pernamentStorage = window.localStorage;
 
