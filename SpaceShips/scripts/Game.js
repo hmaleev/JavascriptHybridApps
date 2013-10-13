@@ -268,10 +268,54 @@ function show(e) {
         startWatch();
         document.addEventListener("pause", onPause, false);
         //    document.addEventListener("resume", onResume, false);
+        navigator.geolocation.getCurrentPosition(
+                function (position) {
+                  
+                    position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    alert(position);
+                    map.panTo(position);
+                    that._putMarker(position);
+
+                    that._isLoading = false;
+                    that.hideLoading();
+                },
+                function (error) {
+                    //default map coordinates                    
+                    position = new google.maps.LatLng(43.459336, -80.462494);
+                    map.panTo(position);
+
+                    that._isLoading = false;
+                    that.hideLoading();
+
+                    navigator.notification.alert("Unable to determine current location. Cannot connect to GPS satellite.",
+                        function () { }, "Location failed", 'OK');
+                },
+                {
+                    timeout: 30000,
+                    enableHighAccuracy: true
+                }
+            );
 
 
     }
     window.addEventListener("batterycritical", onBatteryCritical, false);
+
+
+    function onNavigationSuccess(position) {
+        var element = document.getElementById('geolocation');
+
+        element.innerHTML = 
+                            'Test: ' + Position.toLocaleString() + '<br />';
+    } 
+
+    // onError Callback receives a PositionError object
+    //
+    function onNavigationError(error) {
+        alert('code: ' + error.code + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+
 
     //Score
     function Score() {
