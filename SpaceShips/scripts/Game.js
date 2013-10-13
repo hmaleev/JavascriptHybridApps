@@ -97,7 +97,7 @@ function show(e) {
             if (player.x <= 0) {
                 player.x = 0;
             }
-            if (player.x >= 269) {
+            if (player.x >= 270) {
                 player.x = 269;
             }
         }
@@ -178,7 +178,7 @@ function show(e) {
 
         I.color = "#A2B";
 
-        I.x = Math.random() * 200;
+        I.x = Math.random() * 270;
         I.y = 0;
         I.xVelocity = 0;
         I.yVelocity = Math.random() * 2;
