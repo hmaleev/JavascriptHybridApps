@@ -1,15 +1,14 @@
-<div data-role="view" id="game-view" data-id="game-view"
+<div data-show="show" data-role="view" id="game-view" data-id="game-view"
          data-layout="main-layout" data-title="New Game">
+     <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="right" id="backBtn" data-role="button" class="nav-button" href="#index">Home page</a>
+        </div>
+    </header>
     <canvas id="canvas">Canvas is not supported</canvas>
-    <div id="tempControls">
-        <div id="leftControl">
-            Left
-        </div>
-        <div id="rightControl">
-            Right       
-        </div>
-    </div>
-    <div id="accelerometer" />
+    <!--<p id="geolocation">Finding geolocation...</p>-->
+
+    
     <img src="images/sprite2.png" id="ship" />
     <img src="images/sprite3.png" id="asteroid" />
     <script src="scripts/Game.js"></script>
