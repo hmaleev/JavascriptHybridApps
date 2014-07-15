@@ -45,4 +45,5 @@ E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\asse
 E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.js \
 E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.map \
 E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\kendo.all.min.js \
+E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\tempertatureConversion.js \
 E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\AndroidManifest.xml \
