@@ -57,19 +57,19 @@
 <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
 	<h1> Temperature conversion </h1>
 	<p> From </p>
-	 <select id="originalAreaUnit">
+	 <select id="originalTemperatureUnit">
 		<option>Celsius</option>
 		<option>Kelvin</option>
 		<option>Fahrenheit</option>
 	</select>
-	<input type="text">
+	<input type="number" id="temperatureValue">
 	<p> To </p>
-	<select id="convertedAreaUnit">
+	<select id="convertedTemperatureUnit">
 		<option>Celsius</option>
 		<option>Kelvin</option>
 		<option>Fahrenheit</option>
 	</select>
-	<button>Convert</button>
+	<button id="temperatureConversionBtn">Convert</button>
 </div>
 
 
@@ -161,5 +161,7 @@
 <script type="text/javascript">
 	application.initialize();
 </script>
+<script type="text/javascript" src="js/tempertatureConversion.js"></script>
+
 </body>
 </html>
