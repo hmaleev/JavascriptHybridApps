@@ -97,7 +97,7 @@ function show(e) {
             if (player.x <= 0) {
                 player.x = 0;
             }
-            if (player.x >= 270) {
+            if (player.x >= 269) {
                 player.x = 269;
             }
         }
