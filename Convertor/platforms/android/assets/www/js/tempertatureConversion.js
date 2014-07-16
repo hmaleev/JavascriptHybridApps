@@ -5,7 +5,7 @@ var btn = $("#temperatureConversionBtn");
 btn.click( function () {
 
 	var currentUnit = $("#originalTemperatureUnit").val();
-	var currentUnitValue = $("#temperatureValue").val();
+	var currentUnitValue = parseFloat($("#temperatureValue").val());
 	var newUnit = $("#convertedTemperatureUnit").val();
 
 	function convertCurrentUnitToCelsius() {
@@ -13,7 +13,15 @@ btn.click( function () {
 			case "Celsius": return currentUnitValue;
 			case "Kelvin": return currentUnitValue -273.15;
 		}
+	}
+	function convertCelsiusToNewTemperatureUnit() {
+		switch (newUnit) {
+			case "Celsius": return temporaryValue;
+			case "Kelvin": return temporaryValue +273.15;
+		}
 	
 	}
-	alert(convertCurrentUnitToCelsius( ));
+	var temporaryValue = parseFloat(convertCurrentUnitToCelsius());
+
+	alert(convertCelsiusToNewTemperatureUnit());
 })
