@@ -20,20 +20,26 @@
 	<h1> Distance conversion</h1>
 	<p> From </p>
 	 <select id="originalDistanceUnit">
-		<option>centimeters</option>
-		<option>inches</option>
-		<option>meters</option>
-		<option>kilometers</option>
+        <option>Meters</option>
+        <option>Kilometers</option>
+		<option>Centimeters</option>
+		<option>Inches</option>
+		<option>Foot</option>
+        <option>Yard</option>
+        <option>Mile</option>
 	</select>
-    <input type="number">
+    <input type="number" id="distanceValue">
 	<p> To </p>
 	<select id="convertedDistanceUnit">
-		<option>centimeters</option>
-		<option>inches</option>
-		<option>meters</option>
-		<option>kilometers</option>
+		<option>Meters</option>
+        <option>Kilometers</option>
+        <option>Centimeters</option>
+        <option>Inches</option>
+        <option>Foot</option>
+        <option>Yard</option>
+        <option>Mile</option>
 	</select>
-	<button>Convert</button>
+	<button id="distanceConversionBtn">Convert</button>
 </div>
 
 <div data-role="view" id="drawer-area" data-layout="drawer-layout" data-title="Area">
@@ -51,7 +57,7 @@
 		<option>square kilometers</option>
 		<option>square miles</option>
 	</select>
-	<button>Convert</button>
+	<button id="areaConversionBtn">Convert</button>
 </div>
 
 <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
@@ -155,13 +161,14 @@
 <script>
     var app = new kendo.mobile.Application(document.body);
 </script>
-
 <script type="text/javascript" src="cordova.js"></script>
+
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
 	application.initialize();
 </script>
-<script type="text/javascript" src="js/tempertatureConversion.js"></script>
+
+<script type="text/javascript" src="js/conversion.js"></script>
 
 </body>
 </html>

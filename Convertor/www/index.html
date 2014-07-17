@@ -19,6 +19,7 @@
 <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
 	<h1> Distance conversion</h1>
 	<p> From </p>
+     <input type="number" id="distanceValue">
 	 <select id="originalDistanceUnit">
         <option>Meters</option>
         <option>Kilometers</option>
@@ -28,7 +29,7 @@
         <option>Yard</option>
         <option>Mile</option>
 	</select>
-    <input type="number" id="distanceValue">
+   
 	<p> To </p>
 	<select id="convertedDistanceUnit">
 		<option>Meters</option>
@@ -39,53 +40,58 @@
         <option>Yard</option>
         <option>Mile</option>
 	</select>
+     <div> Result: </div>
 	<button id="distanceConversionBtn">Convert</button>
 </div>
 
-<div data-role="view" id="drawer-area" data-layout="drawer-layout" data-title="Area">
-	<h1> Area conversion </h1>
+<div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
+	<h1> Speed conversion </h1>
 	<p> From </p>
-	 <select id="originalAreaUnit">
-		<option>square meters</option>
-		<option>square kilometers</option>
-		<option>square miles</option>
+    <input type="number" id="speedValue">
+	 <select id="originalSpeedUnit">
+		<option>km/h</option>
+        <option>mi/h</option>
+        <option>m/s</option>s
 	</select>
-	<input type="number">
+	
 	<p> To </p>
-	<select id="convertedAreaUnit">
-		<option>square meters</option>
-		<option>square kilometers</option>
-		<option>square miles</option>
+	<select id="convertedSpeedUnit">
+	    <option>km/h</option>
+        <option>mi/h</option>
+        <option>m/s</option>
 	</select>
-	<button id="areaConversionBtn">Convert</button>
+     <div> Result: </div>
+	<button id="speedConversionBtn">Convert</button>
 </div>
 
 <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
 	<h1> Temperature conversion </h1>
 	<p> From </p>
+    <input type="number" id="temperatureValue">
 	 <select id="originalTemperatureUnit">
 		<option>Celsius</option>
 		<option>Kelvin</option>
 		<option>Fahrenheit</option>
 	</select>
-	<input type="number" id="temperatureValue">
+	
 	<p> To </p>
 	<select id="convertedTemperatureUnit">
 		<option>Celsius</option>
 		<option>Kelvin</option>
 		<option>Fahrenheit</option>
 	</select>
+    <div> Result: </div>
 	<button id="temperatureConversionBtn">Convert</button>
 </div>
 
 
-<div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-area', 'drawer-temperature',  'drawer-area', '/kendo-ui/mobile/m/drawer/index.html']">
+<div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', '/kendo-ui/mobile/m/drawer/index.html']">
     <ul data-role="listview" data-type="group">
-        <li>Mailbox
+        <li>Categories
             <ul>
 				<li><a href="#drawer-distance" data-transition="none">Distance</a></li>
                 <li><a href="#drawer-temperature" data-transition="none">Temperature</a></li>
-                <li><a href="#drawer-area" data-transition="none">Area</a></li>
+                <li><a href="#drawer-speed" data-transition="none">Speed</a></li>
             </ul>
         </li>
     </ul>
@@ -96,7 +102,9 @@
         <div data-role="navbar">
             <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
             <span data-role="view-title"></span>
+        <!--   
             <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
+        -->
         </div>
     </header>
 </div>
@@ -161,12 +169,13 @@
 <script>
     var app = new kendo.mobile.Application(document.body);
 </script>
-
 <script type="text/javascript" src="cordova.js"></script>
+
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
 	application.initialize();
 </script>
+
 <script type="text/javascript" src="js/conversion.js"></script>
 
 </body>
