@@ -5,19 +5,25 @@ var temperatureConversionBtn = $("#temperatureConversionBtn");
 temperatureConversionBtn.click(function() {
 
 	var temperatureConversion = new ConversionModule.TemperatureConvertion();
-	alert(temperatureConversion.convert());
+	var newUnit = $("#convertedTemperatureUnit").val();
+	$("#distanceResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
+
 })
 
 distanceConversionBtn.click(function() {
 
 	var conversion = new ConversionModule.DistanceConvertion();
-	alert(conversion.convert());
+	var newUnit = $("#convertedDistanceUnit").val();
+	$("#distanceResult").html("RESULT: " + conversion.convert() + " " + newUnit);
+
 })
 
 speedConversionBtn.click(function() {
 
 	var speedConversion = new ConversionModule.SpeedConvertion();
-	alert(speedConversion.convert());
+	var newUnit = $("#convertedSpeedUnit").val();
+
+	$("#speedResult").html("RESULT: " + speedConversion.convert() + " " + newUnit);
 })
 
 
@@ -90,7 +96,7 @@ var ConversionModule = (function() {
 		}
 	}
 
-//----------SPEED CONVERSION----------
+	//----------SPEED CONVERSION----------
 
 
 	function currentUnitToMetersPerSecond(unit, currentValue) {
@@ -102,7 +108,7 @@ var ConversionModule = (function() {
 				return currentValue / 3.6;
 			case "mi/h":
 				return currentValue / 2.23694;
-			
+
 		}
 	}
 
@@ -114,9 +120,9 @@ var ConversionModule = (function() {
 				return temporaryValue * 3.6;
 			case "mi/h":
 				return temporaryValue * 2.23694;
-		}								
+		}
 	}
-  //----------TEMPERATURE----------
+	//----------TEMPERATURE----------
 	var TemperatureConvertion = (function() {
 		var TemperatureConvertion = function() {};
 
@@ -132,7 +138,7 @@ var ConversionModule = (function() {
 		return TemperatureConvertion;
 
 	}());
-//----------DISTANCE----------
+	//----------DISTANCE----------
 	var DistanceConvertion = (function() {
 		var DistanceConvertion = function() {};
 
@@ -141,7 +147,7 @@ var ConversionModule = (function() {
 			var currentValue = parseFloat($("#distanceValue").val());
 			var newUnit = $("#convertedDistanceUnit").val();
 			var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
-			var finalValue = meterToNewDistanceUnit(newUnit, temporaryValue).toFixed(3);
+			var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(3);
 
 			return finalValue;
 		}
@@ -149,7 +155,7 @@ var ConversionModule = (function() {
 
 	}());
 
-//----------SPEED----------
+	//----------SPEED----------
 	var SpeedConvertion = (function() {
 		var SpeedConvertion = function() {};
 
