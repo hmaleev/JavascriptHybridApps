@@ -1,6 +1,14 @@
 var distanceConversionBtn = $("#distanceConversionBtn");
 var speedConversionBtn = $("#speedConversionBtn");
 var temperatureConversionBtn = $("#temperatureConversionBtn");
+var saveSettigsBtn = $("#saveSettingsBtn");
+
+
+saveSettigsBtn.click(function () {
+
+    var settings = new ConversionModule.Settings
+    settings.save();
+})
 
 temperatureConversionBtn.click(function() {
 
@@ -31,6 +39,26 @@ speedConversionBtn.click(function() {
 
 var ConversionModule = (function() {
 
+    function saveSettings() {
+        var precision = $("#precision").val();
+        alert("Saved: " + precision);
+        localStorage.setItem("precision", precision);
+    }
+    function loadSettings() {
+        var precision = localStorage.getItem("precision");
+        if (precision === null) {
+            precision = 2;
+        }
+       // alert("Loaded: " + precision);
+        if (precision === null) {
+            precision = 2;
+        }
+        var loadedSettigs = {};
+        loadedSettigs.precision = precision
+        console.log(loadedSettigs);
+        return loadedSettigs;
+    }
+
 	//----------TEMPERATURE CONVERSION----------
 	function currentUnitToCelsius(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
@@ -54,9 +82,8 @@ var ConversionModule = (function() {
 				return (temporaryValue * 1.8) + 32.0;
 		}
 	}
-	//----------DISTANCE CONVERSION----------
 
-
+    //----------DISTANCE CONVERSION----------
 	function currentUnitToMeter(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -97,8 +124,6 @@ var ConversionModule = (function() {
 	}
 
 	//----------SPEED CONVERSION----------
-
-
 	function currentUnitToMetersPerSecond(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -122,7 +147,8 @@ var ConversionModule = (function() {
 				return temporaryValue * 2.23694;
 		}
 	}
-	//----------TEMPERATURE----------
+
+    //----------TEMPERATURE----------
 	var TemperatureConvertion = (function() {
 		var TemperatureConvertion = function() {};
 
@@ -131,14 +157,16 @@ var ConversionModule = (function() {
 			var currentValue = parseFloat($("#temperatureValue").val());
 			var newUnit = $("#convertedTemperatureUnit").val();
 			var temporaryValue = currentUnitToCelsius(currentUnit, currentValue);
-			var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(2);
+			var precision = loadSettings().precision;
+			var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(precision);
 
 			return finalValue;
 		}
 		return TemperatureConvertion;
 
 	}());
-	//----------DISTANCE----------
+
+    //----------DISTANCE----------
 	var DistanceConvertion = (function() {
 		var DistanceConvertion = function() {};
 
@@ -147,8 +175,8 @@ var ConversionModule = (function() {
 			var currentValue = parseFloat($("#distanceValue").val());
 			var newUnit = $("#convertedDistanceUnit").val();
 			var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
-			var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(3);
-
+			var precision = loadSettings().precision;
+			var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(precision);
 			return finalValue;
 		}
 		return DistanceConvertion;
@@ -164,7 +192,9 @@ var ConversionModule = (function() {
 			var currentValue = parseFloat($("#speedValue").val());
 			var newUnit = $("#convertedSpeedUnit").val();
 			var temporaryValue = currentUnitToMetersPerSecond(currentUnit, currentValue);
-			var finalValue = metersPerSecondToNewSpeedUnit(newUnit, temporaryValue).toFixed(3);
+			var precision = loadSettings().precision;
+
+			var finalValue = metersPerSecondToNewSpeedUnit(newUnit, temporaryValue).toFixed(precision);
 
 			return finalValue;
 		}

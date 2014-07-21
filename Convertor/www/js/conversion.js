@@ -14,7 +14,7 @@ temperatureConversionBtn.click(function() {
 
 	var temperatureConversion = new ConversionModule.TemperatureConvertion();
 	var newUnit = $("#convertedTemperatureUnit").val();
-	$("#distanceResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
+	$("#temperatureResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
 
 })
 
@@ -202,9 +202,24 @@ var ConversionModule = (function() {
 
 	}());
 
+	var Settings = (function () {
+	    var Settings = function () { };
+
+	    Settings.prototype.save = function () {
+	        saveSettings();
+	    }
+	    Settings.prototype.load = function () {
+	        loadSettings();
+	    }
+
+	    return Settings;
+
+	}());
+
 	return {
 		TemperatureConvertion: TemperatureConvertion,
 		DistanceConvertion: DistanceConvertion,
 		SpeedConvertion: SpeedConvertion,
+        Settings:Settings
 	};
 }());
