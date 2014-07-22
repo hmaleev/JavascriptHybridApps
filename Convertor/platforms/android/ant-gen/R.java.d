@@ -13,6 +13,7 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\r
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\drawable-port-xhdpi\screen.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\drawable-xhdpi\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\values\strings.xml \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\values\version.xml \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\xml\config.xml \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable-hdpi\icon.png \

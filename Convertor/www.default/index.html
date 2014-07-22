@@ -1,0 +1,309 @@
+﻿<html>
+<head>
+    <title>Convertor</title>
+	 <meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<meta name="msapplication-tap-highlight" content="no" />
+    <link href="css/kendo.common.min.css" rel="stylesheet" />
+    <link href="css/kendo.default.min.css" rel="stylesheet" />
+    <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+	<script src="js/kendo.all.min.js"></script> 
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        // Wait for Cordova to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+         //   alert("here");
+            navigator.splashscreen.hide();
+
+//-------------------------------------------------------------
+
+
+//-------------------------------------------------------------
+        }
+
+    </script>
+
+
+</head>
+<body onload="onLoad()">
+    <script>
+        var admob_ios_key = 'ca-app-pub-6869992474017983/4806197152';
+        var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
+        var adId = (navigator.userAgent.indexOf('Android') >= 0) ? admob_android_key : admob_ios_key;
+
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // more callback to handle Ad events
+            document.addEventListener('onReceiveAd', function () {
+                window.plugins.AdMob.showAd(true);
+                onResize();
+            });
+            document.addEventListener('onFailedToReceiveAd', function (data) {
+            });
+            document.addEventListener('onPresentAd', function () {
+            });
+            document.addEventListener('onDismissAd', function () {
+            });
+            document.addEventListener('onLeaveToAd', function () {
+            });
+            document.addEventListener('onReceiveInterstitialAd', function () {
+                window.plugins.AdMob.showInterstitialAd(true);
+            });
+        }
+        function createAd() {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.createBannerView(
+                                    {
+                                        'publisherId': adId,
+                                        'adSize': am.AD_SIZE.BANNER,
+                                        'bannerAtTop': false,
+                                        'overlap': true
+                                    }, function () {
+                                        am.requestAd({ 'isTesting': true }, function () {
+                                        }, function () {
+                                            alert('failed to request ad');
+                                        })
+                                    }, function () {
+                                        alert("failed to create ad view");
+                                    });
+
+
+            } else {
+                alert('AdMob plugin not available/ready.');
+            }
+        }
+        function removeAd() {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.destroyBannerView({}, function () { onResize(); }, function () { });
+            }
+
+        }
+        function onDeviceReady() {
+            createAd();
+        }
+        function showAd(bshow) {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.showAd(bshow, function () { onResize(); }, function () { alert('please create ad first'); });
+            } else {
+                alert('AdMob plugin not available/ready.');
+            }
+        }
+        function showInterstitialAd() {
+            var am = window.plugins.AdMob;
+            am.createInterstitialView(
+                                      {
+                                          'publisherId': adId,
+                                      },
+                                      function () {
+                                          am.requestInterstitialAd({ 'isTesting': true }, function () { }, function () {
+                                              alert('failed to request ad');
+                                          });
+                                      },
+                                      function () {
+                                          alert("Interstitial failed");
+                                      }
+                                      );
+        }
+        function onResize() {
+            var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+            document.getElementById('sizeinfo').innerHTML = msg;
+        }
+    </script>
+
+    <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
+        <h1> Distance conversion</h1>
+        <p> From </p>
+        <input type="number" id="distanceValue">
+        <select id="originalDistanceUnit">
+            <option>Meters</option>
+            <option>Kilometers</option>
+            <option>Centimeters</option>
+            <option>Inches</option>
+            <option>Foot</option>
+            <option>Yard</option>
+            <option>Mile</option>
+        </select>
+
+        <p> To </p>
+        <select id="convertedDistanceUnit">
+            <option>Meters</option>
+            <option>Kilometers</option>
+            <option>Centimeters</option>
+            <option>Inches</option>
+            <option>Foot</option>
+            <option>Yard</option>
+            <option>Mile</option>
+        </select>
+        <p id="distanceResult"> Result: </p>
+        <button id="distanceConversionBtn">Convert</button>
+
+        <p>Demo for AdMob Plugin</p>
+        <p><button onclick="createAd();">create Ad</button> <button onclick="removeAd();">remove Ad</button></p>
+        <p><button onclick="showAd(true);">show Ad</button> <button onclick="showAd(false);">hide Ad</button></p>
+        <p><button onclick="showInterstitialAd();">show Interstitial Ad</button></p>
+        <div id="sizeinfo">width * height</div>
+
+
+    </div>
+
+    <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
+        <h1> Speed conversion </h1>
+        <p> From </p>
+        <input type="number" id="speedValue">
+        <select id="originalSpeedUnit">
+            <option>km/h</option>
+            <option>mi/h</option>
+            <option>m/s</option>s
+        </select>
+
+        <p> To </p>
+        <select id="convertedSpeedUnit">
+            <option>km/h</option>
+            <option>mi/h</option>
+            <option>m/s</option>
+        </select>
+        <p id="speedResult"> Result: </p>
+        <button id="speedConversionBtn">Convert</button>
+    </div>
+
+    <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
+        <h1> Temperature conversion </h1>
+        <p> From </p>
+        <input type="number" id="temperatureValue">
+        <select id="originalTemperatureUnit">
+            <option>Celsius</option>
+            <option>Kelvin</option>
+            <option>Fahrenheit</option>
+        </select>
+
+        <p> To </p>
+        <select id="convertedTemperatureUnit">
+            <option>Celsius</option>
+            <option>Kelvin</option>
+            <option>Fahrenheit</option>
+        </select>
+        <p id="temperatureResult"> Result: </p>
+        <button id="temperatureConversionBtn">Convert</button>
+    </div>
+
+    <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
+        <h1> Settings </h1>
+        <p> Select signs after the decimal </p>
+        <select id="precision">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+        <button id="saveSettingsBtn">Save changes</button>
+    </div>
+
+    <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
+        <ul data-role="listview" data-type="group">
+            <li>
+                Categories
+                <ul>
+                    <li><a href="#drawer-distance" data-transition="none">Distance</a></li>
+                    <li><a href="#drawer-temperature" data-transition="none">Temperature</a></li>
+                    <li><a href="#drawer-speed" data-transition="none">Speed</a></li>
+                    <li><a href="#drawer-settings" data-transition="none">Settings</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div data-role="layout" data-id="drawer-layout">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
+                <span data-role="view-title"></span>
+                <!--
+                    <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
+                -->
+            </div>
+        </header>
+    </div>
+
+    <script>
+        // reset global drawer instance, for demo purposes
+        kendo.mobile.ui.Drawer.current = null;
+    </script>
+
+    <style>
+        .km-ios #my-drawer .km-content, .km-android #my-drawer .km-content, .km-blackberry #my-drawer .km-content,
+        .km-ios #my-drawer .km-list > li, .km-android #my-drawer .km-list > li, .km-blackberry #my-drawer .km-list > li,
+        .km-ios #my-drawer .km-listview-link > .km-icon, .km-android #my-drawer .km-listview-link > .km-icon, .km-blackberry #my-drawer .km-listview-link > .km-icon,
+        .km-ios #my-drawer .km-list li > .km-icon, .km-android #my-drawer .km-list li > .km-icon, .km-blackberry #my-drawer .km-list li > .km-icon {
+            background-color: #4e4e4e;
+            color: #fff;
+        }
+
+        .km-ios #my-drawer .km-group-title,
+        .km-blackberry #my-drawer .km-group-title {
+            background-color: #6e6e6e;
+            color: #fff;
+        }
+
+        .km-drawer-button:before, .km-drawer-button:after {
+            content: "\E0F1";
+        }
+
+        .km-inbox:before, .km-inbox:after {
+            content: "\E0B0";
+        }
+
+        .km-sent:before, .km-sent:after {
+            content: "\E0C6";
+        }
+
+        .km-trash:before, .km-trash:after {
+            content: "\E0C3";
+        }
+
+        .km-spam:before, .km-spam:after {
+            content: "\E0C5";
+        }
+
+        .km-star:before, .km-star:after {
+            content: "\E0D7";
+        }
+
+        .km-settings:before, .km-settings:after {
+            content: "\E0DA";
+        }
+
+        .km-off:before, .km-off:after {
+            content: "\E0B9";
+        }
+    </style>
+
+    <script>
+        var app = new kendo.mobile.Application(document.body);
+    </script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        application.initialize();
+    </script>
+
+    <script type="text/javascript" src="js/conversion.js"></script>
+
+</body>
+</html>

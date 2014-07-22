@@ -13,6 +13,7 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\r
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\drawable-port-xhdpi\screen.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\drawable-xhdpi\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\values\strings.xml \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\values\version.xml \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\res\xml\config.xml \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable-hdpi\icon.png \
@@ -29,6 +30,7 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\_where-is-www.txt \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\2.html \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\cordova.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\cordova_plugins.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\css \
@@ -50,7 +52,10 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.map \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\kendo.all.min.js \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\com.rjfun.cordova.plugin.admob \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\com.rjfun.cordova.plugin.admob\www \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\com.rjfun.cordova.plugin.admob\www\AdMob.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen\www \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen\www\splashscreen.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\AndroidManifest.xml \
