@@ -6,4 +6,5 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\classes\com\hmaleev\convertor\R$string.class \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\classes\com\hmaleev\convertor\R$xml.class \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\classes\com\hmaleev\convertor\R.class \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\classes\org\apache\cordova\splashscreen\SplashScreen.class \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\dexedLibs\classes-58c491f8f01183720ffb8bd8468d8357.jar \

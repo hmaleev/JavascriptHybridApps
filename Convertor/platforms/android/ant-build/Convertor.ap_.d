@@ -35,6 +35,7 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\img \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\index.html \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\css\images \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\css\index.css \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\css\kendo.common.min.css \
@@ -49,4 +50,7 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\jquery.min.map \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\js\kendo.all.min.js \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen\www \
+C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen\www\splashscreen.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\AndroidManifest.xml \
