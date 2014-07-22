@@ -15,79 +15,10 @@
 	<script src="js/kendo.all.min.js"></script> 
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-
-        var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
-        var adId = (navigator.userAgent.indexOf('Android') >= 0) ? admob_android_key : admob_ios_key;
-
-
-        // Wait for Cordova to load
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        document.addEventListener('onReceiveAd', function () {
-            window.plugins.AdMob.showAd(true);
-            onResize();
-        });
-        document.addEventListener('onFailedToReceiveAd', function (data) {
-        });
-        document.addEventListener('onPresentAd', function () {
-        });
-        document.addEventListener('onDismissAd', function () {
-        });
-        document.addEventListener('onLeaveToAd', function () {
-        });
-
-        // Cordova is ready
-        //
-        function onDeviceReady() {
-         //   alert("here");
-            navigator.splashscreen.hide();
-            createAd();
-        }
-        function createAd() {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.createBannerView(
-                                    {
-                                        'publisherId': adId,
-                                        'adSize': am.AD_SIZE.SMART_BANNER,
-                                        'bannerAtTop': false,
-                                        'overlap': false
-                                    }, function () {
-                                        am.requestAd({ 'isTesting': true }, function () {
-                                        }, function () {
-                                            alert('failed to request ad');
-                                        })
-                                    }, function () {
-                                        alert("failed to create ad view");
-                                    });
-            } else {
-                alert('AdMob plugin not available/ready.');
-            }
-        }
-        function removeAd() {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.destroyBannerView({}, function () { onResize(); }, function () { });
-            }
-
-        }
-        function showAd(bshow) {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.showAd(bshow, function () { onResize(); }, function () { alert('please create ad first'); });
-            } else {
-                alert('AdMob plugin not available/ready.');
-            }
-        }
-    </script>
-
-
+ 
 </head>
 <body>
-   
+  
 
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
         <h1> Distance conversion</h1>
@@ -116,10 +47,10 @@
         <p id="distanceResult"> Result: </p>
         <button id="distanceConversionBtn">Convert</button>
 
-        <!--<p>Demo for AdMob Plugin</p>-->
+        <p>Demo for AdMob Plugin</p>
         <!--<p><button onclick="createAd();">create Ad</button> <button onclick="removeAd();">remove Ad</button></p>-->
-        <!--<p><button onclick="showAd(true);">show Ad</button><button onclick="showAd(false);">hide Ad</button></p>-->
-        <!-- <div id="sizeinfo">width * height</div>-->
+        <p><button onclick="showAd(true);">show Ad</button><button onclick="showAd(false);">hide Ad</button></p>
+         <div id="sizeinfo">width * height</div>
 
 
     </div>
@@ -256,6 +187,73 @@
             content: "\E0B9";
         }
     </style>
+
+    <script type="text/javascript" charset="utf-8">
+
+
+        var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
+        var adId = (navigator.userAgent.indexOf('Android') >= 0) ? admob_android_key : admob_ios_key;
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        document.addEventListener('onReceiveAd', function () {
+            window.plugins.AdMob.showAd(true);
+            onResize();
+        });
+        document.addEventListener('onFailedToReceiveAd', function (data) {
+        });
+        document.addEventListener('onPresentAd', function () {
+        });
+        document.addEventListener('onDismissAd', function () {
+        });
+        document.addEventListener('onLeaveToAd', function () {
+        });
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+            //   alert("here");
+            navigator.splashscreen.hide();
+            createAd();
+        }
+        function createAd() {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.createBannerView(
+                                    {
+                                        'publisherId': adId,
+                                        'adSize': am.AD_SIZE.SMART_BANNER,
+                                        'bannerAtTop': false,
+                                        'overlap': false
+                                    }, function () {
+                                        am.requestAd({ 'isTesting': true }, function () {
+                                        }, function () {
+                                            alert('failed to request ad');
+                                        })
+                                    }, function () {
+                                        alert("failed to create ad view");
+                                    });
+            } else {
+                alert('AdMob plugin not available/ready.');
+            }
+        }
+        function removeAd() {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.destroyBannerView({}, function () { onResize(); }, function () { });
+            }
+
+        }
+        function showAd(bshow) {
+            if (window.plugins && window.plugins.AdMob) {
+                var am = window.plugins.AdMob;
+                am.showAd(bshow, function () { onResize(); }, function () { alert('please create ad first'); });
+            } else {
+                alert('AdMob plugin not available/ready.');
+            }
+        }
+    </script>
+
 
     <script>
         var app = new kendo.mobile.Application(document.body);
