@@ -5,6 +5,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <script type="text/javascript" src="cordova.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<meta name="msapplication-tap-highlight" content="no" />
@@ -13,12 +14,97 @@
     <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
     <script src="js/jquery.min.js"></script>
 	<script src="js/kendo.all.min.js"></script> 
-
-    <script type="text/javascript" src="cordova.js"></script>
- 
 </head>
-<body>
-  
+<body onload="onLoad()" onresize="onResize()">
+
+<script>
+    var admob_ios_key = 'ca-app-pub-6869992474017983/4806197152';
+    var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
+    var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
+
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+
+    function onLoad() {
+        
+         // createAd();
+        // more callback to handle Ad events
+        document.addEventListener('onReceiveAd', function(){
+        window.plugins.AdMob.showAd(true);
+        onResize();
+        });
+        document.addEventListener('onFailedToReceiveAd', function(data){
+        });
+        document.addEventListener('onPresentAd', function(){
+        });
+        document.addEventListener('onDismissAd', function(){
+        });
+        document.addEventListener('onLeaveToAd', function(){
+        });
+    document.addEventListener('onReceiveInterstitialAd', function(){
+                window.plugins.AdMob.showInterstitialAd(true);
+        });
+    }
+    function createAd() {
+        if ( window.plugins && window.plugins.AdMob ) {
+            var am = window.plugins.AdMob;
+            am.createBannerView(
+                                {
+                                'publisherId': adId,
+                                'adSize': am.AD_SIZE.BANNER,
+                                'bannerAtTop': false,
+                                'overlap': false
+                                }, function() {
+                                am.requestAd( { 'isTesting':true }, function() {
+                                             }, function() {
+                                             alert('failed to request ad');
+                                             })
+                                }, function(){
+                                alert( "failed to create ad view" );
+                                });
+        } else {
+            alert('AdMob plugin not available/ready.');
+        }
+    }
+    function removeAd() {
+        if ( window.plugins && window.plugins.AdMob ) {
+            var am = window.plugins.AdMob;
+            am.destroyBannerView({},function(){onResize();},function(){});
+        }
+
+    }
+    function onDeviceReady() {
+        createAd();
+    }
+    function showAd( bshow ) {
+        if ( window.plugins && window.plugins.AdMob ) {
+            var am = window.plugins.AdMob;
+            am.showAd( bshow, function(){ onResize(); }, function(){ alert('please create ad first'); } );
+        } else {
+            alert('AdMob plugin not available/ready.');
+        } 
+    }
+    function showInterstitialAd() {
+        var am = window.plugins.AdMob;
+        am.createInterstitialView(
+                                  {
+                                  'publisherId': adId,
+                                  },
+                                  function() {
+                                  am.requestInterstitialAd( { 'isTesting':true }, function() {}, function() {
+                                                           alert('failed to request ad');
+                                                           });
+                                  },
+                                  function() {
+                                  alert("Interstitial failed");
+                                  }
+                                  );
+    }
+    function onResize() {
+        var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+        document.getElementById('sizeinfo').innerHTML = msg;
+    }
+    </script>
 
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
         <h1> Distance conversion</h1>
@@ -47,12 +133,11 @@
         <p id="distanceResult"> Result: </p>
         <button id="distanceConversionBtn">Convert</button>
 
-        <p>Demo for AdMob Plugin</p>
-        <!--<p><button onclick="createAd();">create Ad</button> <button onclick="removeAd();">remove Ad</button></p>-->
-        <p><button onclick="showAd(true);">show Ad</button><button onclick="showAd(false);">hide Ad</button></p>
-         <div id="sizeinfo">width * height</div>
-
-
+    <!--    <p>Demo for AdMob Plugin</p>
+       <p><button onclick="createAd();">create Ad</button> <button onclick="removeAd();">remove Ad</button></p>
+       <p><button onclick="showAd(true);">show Ad</button><button onclick="showAd(false);">hide Ad</button></p>
+       -->
+        <div id="sizeinfo">width * height</div>
     </div>
 
     <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
@@ -128,16 +213,13 @@
             <div data-role="navbar">
                 <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
                 <span data-role="view-title"></span>
-                <!--
-                    <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
-                -->
             </div>
         </header>
     </div>
 
     <script>
         // reset global drawer instance, for demo purposes
-        kendo.mobile.ui.Drawer.current = null;
+       // kendo.mobile.ui.Drawer.current = null;
     </script>
 
     <style>
@@ -188,73 +270,7 @@
         }
     </style>
 
-    <script type="text/javascript" charset="utf-8">
-
-
-        var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
-        var adId = (navigator.userAgent.indexOf('Android') >= 0) ? admob_android_key : admob_ios_key;
-
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        document.addEventListener('onReceiveAd', function () {
-            window.plugins.AdMob.showAd(true);
-            onResize();
-        });
-        document.addEventListener('onFailedToReceiveAd', function (data) {
-        });
-        document.addEventListener('onPresentAd', function () {
-        });
-        document.addEventListener('onDismissAd', function () {
-        });
-        document.addEventListener('onLeaveToAd', function () {
-        });
-
-        // Cordova is ready
-        //
-        function onDeviceReady() {
-            //   alert("here");
-            navigator.splashscreen.hide();
-            createAd();
-        }
-        function createAd() {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.createBannerView(
-                                    {
-                                        'publisherId': adId,
-                                        'adSize': am.AD_SIZE.SMART_BANNER,
-                                        'bannerAtTop': false,
-                                        'overlap': false
-                                    }, function () {
-                                        am.requestAd({ 'isTesting': true }, function () {
-                                        }, function () {
-                                            alert('failed to request ad');
-                                        })
-                                    }, function () {
-                                        alert("failed to create ad view");
-                                    });
-            } else {
-                alert('AdMob plugin not available/ready.');
-            }
-        }
-        function removeAd() {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.destroyBannerView({}, function () { onResize(); }, function () { });
-            }
-
-        }
-        function showAd(bshow) {
-            if (window.plugins && window.plugins.AdMob) {
-                var am = window.plugins.AdMob;
-                am.showAd(bshow, function () { onResize(); }, function () { alert('please create ad first'); });
-            } else {
-                alert('AdMob plugin not available/ready.');
-            }
-        }
-    </script>
-
-
+   
     <script>
         var app = new kendo.mobile.Application(document.body);
     </script>
