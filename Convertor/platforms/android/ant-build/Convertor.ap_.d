@@ -30,7 +30,6 @@ C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\a
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\_where-is-www.txt \
-C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\2.html \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\cordova.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\cordova_plugins.js \
 C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\assets\www\css \
