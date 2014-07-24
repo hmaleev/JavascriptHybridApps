@@ -11,6 +11,9 @@
     <feature name="AdMob">
         <param name="android-package" value="com.rjfun.cordova.plugin.AdMob" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
     <name>Converter</name>
     <description>
        A simple application to convert between different units

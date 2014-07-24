@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-    <title>Convertor</title>
+    <title>Converter</title>
 	 <meta charset="utf-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
@@ -18,32 +18,22 @@
 <body onload="onLoad()" onresize="onResize()">
 
 <script>
-    var admob_ios_key = 'ca-app-pub-6869992474017983/4806197152';
     var admob_android_key = 'ca-app-pub-6869992474017983/9375997553';
-    var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
+    //var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key;
+    var adId = 'ca-app-pub-6869992474017983/9375997553';
 
   document.addEventListener("deviceready", onDeviceReady, false);
 
-
     function onLoad() {
-        
-         // createAd();
+      
         // more callback to handle Ad events
-        document.addEventListener('onReceiveAd', function(){
+        document.addEventListener('onReceiveAd', function () {
+            alert();
+
         window.plugins.AdMob.showAd(true);
         onResize();
         });
-        document.addEventListener('onFailedToReceiveAd', function(data){
-        });
-        document.addEventListener('onPresentAd', function(){
-        });
-        document.addEventListener('onDismissAd', function(){
-        });
-        document.addEventListener('onLeaveToAd', function(){
-        });
-    document.addEventListener('onReceiveInterstitialAd', function(){
-                window.plugins.AdMob.showInterstitialAd(true);
-        });
+
     }
     function createAd() {
         if ( window.plugins && window.plugins.AdMob ) {
@@ -74,7 +64,11 @@
 
     }
     function onDeviceReady() {
-        createAd();
+        //var x = navigator.connection.type;
+        if (navigator.connection.type !== Connection.NONE) {
+            createAd();
+        }
+       
     }
     function showAd( bshow ) {
         if ( window.plugins && window.plugins.AdMob ) {
@@ -108,7 +102,7 @@
 
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
         <h1> Distance conversion</h1>
-        <p> From </p>
+        <p> Convert </p>
         <input type="number" id="distanceValue">
         <select id="originalDistanceUnit">
             <option>Meters</option>
@@ -132,17 +126,11 @@
         </select>
         <p id="distanceResult"> Result: </p>
         <button id="distanceConversionBtn">Convert</button>
-
-    <!--    <p>Demo for AdMob Plugin</p>
-       <p><button onclick="createAd();">create Ad</button> <button onclick="removeAd();">remove Ad</button></p>
-       <p><button onclick="showAd(true);">show Ad</button><button onclick="showAd(false);">hide Ad</button></p>
-       -->
-        <div id="sizeinfo">width * height</div>
     </div>
 
     <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
         <h1> Speed conversion </h1>
-        <p> From </p>
+        <p> Convert </p>
         <input type="number" id="speedValue">
         <select id="originalSpeedUnit">
             <option>km/h</option>
@@ -162,7 +150,7 @@
 
     <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
         <h1> Temperature conversion </h1>
-        <p> From </p>
+        <p> Convert </p>
         <input type="number" id="temperatureValue">
         <select id="originalTemperatureUnit">
             <option>Celsius</option>
@@ -217,12 +205,8 @@
         </header>
     </div>
 
-    <script>
-        // reset global drawer instance, for demo purposes
-       // kendo.mobile.ui.Drawer.current = null;
-    </script>
-
     <style>
+
         .km-ios #my-drawer .km-content, .km-android #my-drawer .km-content, .km-blackberry #my-drawer .km-content,
         .km-ios #my-drawer .km-list > li, .km-android #my-drawer .km-list > li, .km-blackberry #my-drawer .km-list > li,
         .km-ios #my-drawer .km-listview-link > .km-icon, .km-android #my-drawer .km-listview-link > .km-icon, .km-blackberry #my-drawer .km-listview-link > .km-icon,
@@ -270,16 +254,9 @@
         }
     </style>
 
-   
     <script>
         var app = new kendo.mobile.Application(document.body);
     </script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        application.initialize();
-    </script>
-
     <script type="text/javascript" src="js/conversion.js"></script>
-
 </body>
 </html>
