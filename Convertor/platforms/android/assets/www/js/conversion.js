@@ -8,6 +8,7 @@ saveSettigsBtn.click(function () {
 
     var settings = new ConversionModule.Settings
     settings.save();
+	navigator.notification.vibrate(300);
 })
 
 temperatureConversionBtn.click(function() {
@@ -15,7 +16,7 @@ temperatureConversionBtn.click(function() {
 	var temperatureConversion = new ConversionModule.TemperatureConvertion();
 	var newUnit = $("#convertedTemperatureUnit").val();
 	$("#temperatureResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
-
+	navigator.notification.vibrate(300);
 })
 
 distanceConversionBtn.click(function() {
@@ -23,6 +24,7 @@ distanceConversionBtn.click(function() {
 	var conversion = new ConversionModule.DistanceConvertion();
 	var newUnit = $("#convertedDistanceUnit").val();
 	$("#distanceResult").html("RESULT: " + conversion.convert() + " " + newUnit);
+	navigator.notification.vibrate(300);
 
 })
 
@@ -30,8 +32,8 @@ speedConversionBtn.click(function() {
 
 	var speedConversion = new ConversionModule.SpeedConvertion();
 	var newUnit = $("#convertedSpeedUnit").val();
-
 	$("#speedResult").html("RESULT: " + speedConversion.convert() + " " + newUnit);
+	navigator.notification.vibrate(300);
 })
 
 
@@ -41,7 +43,7 @@ var ConversionModule = (function() {
 
     function saveSettings() {
         var precision = $("#precision").val();
-        alert("Saved: " + precision);
+        //alert("Saved: " + precision);
         localStorage.setItem("precision", precision);
     }
     function loadSettings() {

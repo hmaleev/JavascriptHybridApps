@@ -1,2 +1,2 @@
-C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\AndroidManifest.xml : \
-C:\Users\Xri\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\AndroidManifest.xml \
+E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\ant-build\AndroidManifest.xml : \
+E:\Hristo\Documents\GitHub\JavascriptHybridApps\Convertor\platforms\android\AndroidManifest.xml \
