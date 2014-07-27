@@ -70,31 +70,34 @@ function showAd( bshow ) {
 }
 function onResize() {
     var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
-    document.getElementById('sizeinfo').innerHTML = msg;
 }
 </script>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
         <h1> Distance conversion</h1>
         <p> Convert </p>
-        <input type="number" id="distanceValue">
-        <select id="originalDistanceUnit">
-            <option>Meters</option>
+        <input type="number" id="distanceValue" placeholder="Enter distance">
+        <select id="originalDistanceUnit">	
             <option>Kilometers</option>
+            <option>Meters</option>
             <option>Centimeters</option>
+			<option>Milimeters</option>
             <option>Inches</option>
-            <option>Foot</option>
-            <option>Yard</option>
-            <option>Mile</option>
+            <option>Feet</option>
+            <option>Yards</option>
+            <option>Miles</option>
+			 <option>Nautical Miles</option>
         </select>
         <p> To </p>
         <select id="convertedDistanceUnit">
-            <option>Meters</option>
             <option>Kilometers</option>
+            <option>Meters</option>
             <option>Centimeters</option>
+			<option>Milimeters</option>
             <option>Inches</option>
-            <option>Foot</option>
-            <option>Yard</option>
-            <option>Mile</option>
+            <option>Feet</option>
+            <option>Yards</option>
+            <option>Miles</option>
+			 <option>Nautical Miles</option>
         </select>
         <p id="distanceResult"> Result: </p>
         <button id="distanceConversionBtn">Convert</button>
@@ -102,7 +105,7 @@ function onResize() {
     <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
         <h1> Speed conversion </h1>
         <p> Convert </p>
-        <input type="number" id="speedValue">
+        <input type="number" id="speedValue" placeholder="Enter speed">
         <select id="originalSpeedUnit">
             <option>km/h</option>
             <option>mi/h</option>
@@ -120,7 +123,7 @@ function onResize() {
     <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
         <h1> Temperature conversion </h1>
         <p> Convert </p>
-        <input type="number" id="temperatureValue">
+        <input type="number" id="temperatureValue" placeholder="Enter temperature">
         <select id="originalTemperatureUnit">
             <option>Celsius</option>
             <option>Kelvin</option>

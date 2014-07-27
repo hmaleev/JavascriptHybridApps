@@ -89,39 +89,48 @@ var ConversionModule = (function() {
 	function currentUnitToMeter(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
-			case "Meters":
-				return currentValue;
 			case "Kilometers":
 				return currentValue * 1000;
+			case "Meters":
+				return currentValue;
 			case "Centimeters":
 				return currentValue / 100;
+			case "Milimeters":
+				return currentValue / 1000;
 			case "Inches":
 				return currentValue / 39.370;
-			case "Foot":
+			case "Feet":
 				return currentValue / 3.2808;
-			case "Yard":
+			case "Yards":
 				return currentValue / 1.0936;
-			case "Mile":
-				return (currentValue * 0.00062137);
+			case "Miles":
+				return (currentValue / 0.00062137);
+			case "Nautical Miles":
+				return (currentValue / 0.000539957);
 		}
 	}
 
 	function metersToNewDistanceUnit(newUnit, temporaryValue) {
 		switch (newUnit) {
-			case "Meters":
-				return temporaryValue;
 			case "Kilometers":
 				return temporaryValue / 1000;
+			case "Meters":
+				return temporaryValue;
 			case "Centimeters":
 				return temporaryValue * 100;
+			case "Milimeters":
+				return temporaryValue * 1000;
 			case "Inches":
 				return temporaryValue * 39.370;
-			case "Foot":
+			case "Feet":
 				return temporaryValue * 3.2808;
-			case "Yard":
+			case "Yards":
 				return temporaryValue * 1.0936;
-			case "Mile":
-				return (temporaryValue / 0.00062137);
+			case "Miles":
+				return (temporaryValue * 0.00062137);
+			case "Nautical Miles":
+				console.log("here");
+				return (temporaryValue * 0.000539957);
 		}
 	}
 
