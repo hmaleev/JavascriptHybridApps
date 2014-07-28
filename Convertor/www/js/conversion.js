@@ -234,9 +234,9 @@ var ConversionModule = (function() {
 	        case "watt":
 	            return currentValue;
 	        case "horserpower (electric)":
-	            return currentValue / 3.6;
+	            return currentValue / 0.00134048;
 	        case "horserpower (metric)":
-	            return currentValue / 2.23694;
+	            return currentValue / 0.00135962;
 	    }
 	}
 	function wattsToNewPowerUnit(newUnit, temporaryValue) {
@@ -248,9 +248,9 @@ var ConversionModule = (function() {
 	        case "watt":
 	            return temporaryValue;
 	        case "horserpower (electric)":
-	            return currentValue / 3.6;
+	            return temporaryValue * 0.00134048;
 	        case "horserpower (metric)":
-	            return currentValue / 2.23694;
+	            return temporaryValue * 0.00135962;
 	    }
 	}
 	var PowerConvertion = (function () {
@@ -282,16 +282,15 @@ var ConversionModule = (function() {
 	        case "miligram":
 	            return currentValue / 1000000;
 	        case "long ton (UK)":
-	            return currentValue / 3.6;
+	            return currentValue * 1016.04691;
 	        case "short ton (US)":
-	            return currentValue / 2.23694;
+	            return currentValue * 907.18475;
 	        case "stone":
-	            return currentValue;
+	            return currentValue * 6.35029;
 	        case "pound (lb)":
-	            return currentValue / 3.6;
+	            return currentValue * 0.453592;
 	        case "ounce (oz)":
-	            return currentValue / 2.23694;
-
+	            return currentValue * 0.02835;
 	    }
 	}
 	function kilogramsToNewMassUnit(newUnit, temporaryValue) {
@@ -305,15 +304,15 @@ var ConversionModule = (function() {
 	        case "miligram":
 	            return temporaryValue * 1000000;
 	        case "long ton (UK)":
-	            return temporaryValue / 3.6;
+	            return temporaryValue / 1016.04691;
 	        case "short ton (US)":
-	            return temporaryValue / 2.23694;
+	            return temporaryValue / 907.18475;
 	        case "stone":
-	            return temporaryValue;
+	            return temporaryValue / 6.35029;
 	        case "pound (lb)":
-	            return temporaryValue / 3.6;
+	            return temporaryValue / 0.453592;
 	        case "ounce (oz)":
-	            return temporaryValue / 2.23694;
+	            return temporaryValue / 0.02835;
 	    }
 	}
 	var MassConvertion = (function () {

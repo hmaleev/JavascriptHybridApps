@@ -197,7 +197,7 @@ function onResize() {
     </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
         <h1> Settings </h1>
-        <p> Number of digits after the decimal separator for the result</p>
+        <p>Digits after the decimal separator for the result</p>
         <select id="precision">
             <option>1</option>
             <option>2</option>
@@ -205,14 +205,14 @@ function onResize() {
             <option>4</option>
             <option>5</option>
         </select>
-        <p>example: </p>
+        <p id="precisionExample"></p>
         <p> Group separator for the result </p>
         <select id="separator">
             <option>none</option>
             <option>space</option>
             <option>comma</option>
         </select>
-        <p>example: </p>
+        <p id="separatorExample"></p>
         <button id="saveSettingsBtn">Save changes</button>
     </div>
     <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
