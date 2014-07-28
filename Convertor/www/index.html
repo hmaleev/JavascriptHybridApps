@@ -108,18 +108,18 @@ function onResize() {
                 <option>km/h</option>
                 <option>mi/h</option>
                 <option>m/s</option>
-                <option>knot (nautical)</option>
+        <!--        <option>knot (nautical)</option>
                 <option>mile per minute (mi/m)</option>
-                <option>kilometre per minute (km/m)</option>
+                <option>kilometre per minute (km/m)</option>-->
         </select>
         <p> To </p>
         <select id="convertedSpeedUnit">
                 <option>km/h</option>
                 <option>mi/h</option>
                 <option>m/s</option>
-                <option>knot (nautical)</option>
+             <!--   <option>knot (nautical)</option>
                 <option>mile per minute (mi/m)</option>
-                <option>kilometre per minute (km/m)</option>
+                <option>kilometre per minute (km/m)</option>-->
         </select>
         <p id="speedResult"> Result: </p>
         <button id="speedConversionBtn" class="convertBtn">Convert</button>
@@ -197,7 +197,7 @@ function onResize() {
     </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
         <h1> Settings </h1>
-        <p>Digits after the decimal separator for the result</p>
+        <p>Digits after the decimal separator</p>
         <select id="precision">
             <option>1</option>
             <option>2</option>
@@ -206,13 +206,14 @@ function onResize() {
             <option>5</option>
         </select>
         <p id="precisionExample"></p>
-        <p> Group separator for the result </p>
+        <p id="warningMessage">IMPORTANT: Trailing zeroes will not be shown, regardless of the precision setting!</p>
+        <p> Display result as </p>
         <select id="separator">
-            <option>none</option>
-            <option>space</option>
-            <option>comma</option>
+            <option>123456.78</option>
+            <option>123 456,78</option>
+            <option>123.456,78</option>
+            <option>123,456.78</option>
         </select>
-        <p id="separatorExample"></p>
         <button id="saveSettingsBtn">Save changes</button>
     </div>
     <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
@@ -263,6 +264,6 @@ function onResize() {
     <script>
         var app = new kendo.mobile.Application(document.body);
     </script>
-    <script type="text/javascript" src="js/conversion.js"></script>
+    <script type="text/javascript" src="js/conversion.min.js"></script>
 </body>
 </html>

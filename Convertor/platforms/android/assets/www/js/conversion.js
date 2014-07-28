@@ -51,11 +51,13 @@ var ConversionModule = (function() {
     //----------SETTINGS----------
     function saveSettings() {
         var precision = $("#precision").val();
-        //alert("Saved: " + precision);
         localStorage.setItem("precision", precision);
+        var separator = $("#separator").val();
+        localStorage.setItem("separator", separator);
     }
     function loadSettings() {
         var precision = localStorage.getItem("precision");
+        var separator = localStorage.getItem("separator");
         if (precision === null) {
             precision = 2;
         }
@@ -64,7 +66,8 @@ var ConversionModule = (function() {
             precision = 2;
         }
         var loadedSettigs = {};
-        loadedSettigs.precision = precision
+        loadedSettigs.precision = precision;
+        loadedSettigs.separator = separator;
         console.log(loadedSettigs);
         return loadedSettigs;
     }
@@ -104,6 +107,29 @@ var ConversionModule = (function() {
 				return (temporaryValue * 1.8) + 32.0;
 		}
 	}
+
+	function returnLocalizedResult(finalValue) {
+	    var separator = loadSettings().separator;
+	    switch (separator) {
+	        case "123456.78":
+	            return finalValue;
+	        case "123.456,78":
+	            finalValue = parseFloat(finalValue).toLocaleString("de-de", { maximumFractionDigits: 5 });
+	            console.log( "---after locale---  " + finalValue);
+	            return finalValue;
+	        case "123,456.78":
+	            finalValue = parseFloat(finalValue).toLocaleString("en-us", { maximumFractionDigits: 5 });
+	            console.log("---after locale---  " + finalValue);
+	            return finalValue;
+	        case "123 456,78":
+	            finalValue = parseFloat(finalValue).toLocaleString("bg-bg", { maximumFractionDigits: 5 });
+	            console.log("---after locale---  " + finalValue);
+	            return finalValue;
+	        default:
+	            finalValue = parseFloat(finalValue);
+	            return finalValue;
+	    }
+	}
 	var TemperatureConvertion = (function () {
 	    var TemperatureConvertion = function () { };
 
@@ -114,7 +140,7 @@ var ConversionModule = (function() {
 	        var temporaryValue = currentUnitToCelsius(currentUnit, currentValue);
 	        var precision = loadSettings().precision;
 	        var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(precision);
-
+	        finalValue = returnLocalizedResult(finalValue);
 	        return finalValue;
 	    }
 	    return TemperatureConvertion;
@@ -177,7 +203,9 @@ var ConversionModule = (function() {
 	        var newUnit = $("#convertedDistanceUnit").val();
 	        var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
 	        var precision = loadSettings().precision;
+
 	        var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(precision);
+	        finalValue = returnLocalizedResult(finalValue);
 	        return finalValue;
 	    }
 	    return DistanceConvertion;
@@ -218,6 +246,7 @@ var ConversionModule = (function() {
 			var precision = loadSettings().precision;
 
 			var finalValue = metersPerSecondToNewSpeedUnit(newUnit, temporaryValue).toFixed(precision);
+			finalValue = returnLocalizedResult(finalValue);
 			return finalValue;
 		}
 		return SpeedConvertion;
@@ -234,9 +263,9 @@ var ConversionModule = (function() {
 	        case "watt":
 	            return currentValue;
 	        case "horserpower (electric)":
-	            return currentValue / 3.6;
+	            return currentValue / 0.00134048;
 	        case "horserpower (metric)":
-	            return currentValue / 2.23694;
+	            return currentValue / 0.00135962;
 	    }
 	}
 	function wattsToNewPowerUnit(newUnit, temporaryValue) {
@@ -248,9 +277,9 @@ var ConversionModule = (function() {
 	        case "watt":
 	            return temporaryValue;
 	        case "horserpower (electric)":
-	            return currentValue / 3.6;
+	            return temporaryValue * 0.00134048;
 	        case "horserpower (metric)":
-	            return currentValue / 2.23694;
+	            return temporaryValue * 0.00135962;
 	    }
 	}
 	var PowerConvertion = (function () {
@@ -264,6 +293,7 @@ var ConversionModule = (function() {
 	        var precision = loadSettings().precision;
 
 	        var finalValue = wattsToNewPowerUnit(newUnit, temporaryValue).toFixed(precision);
+	        finalValue = returnLocalizedResult(finalValue);
 	        return finalValue;
 	    }
 	    return PowerConvertion;
@@ -326,6 +356,7 @@ var ConversionModule = (function() {
 	        var precision = loadSettings().precision;
 
 	        var finalValue = kilogramsToNewMassUnit(newUnit, temporaryValue).toFixed(precision);
+	        finalValue = returnLocalizedResult(finalValue);
 	        return finalValue;
 	    }
 	    return MassConvertion;
