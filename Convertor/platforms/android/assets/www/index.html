@@ -146,8 +146,8 @@ function onResize() {
     <div data-role="view" id="drawer-power" data-layout="drawer-layout" data-title="Power">
         <h1> Power conversion </h1>
         <p> Convert </p>
-        <input type="number" id="Number1" placeholder="Enter power">
-        <select id="Select1">
+        <input type="number" id="powerValue" placeholder="Enter power">
+        <select id="originalPowerUnit">
             <option>megawatt</option>s
             <option>kilowatt</option>
             <option>watt</option>s
@@ -155,21 +155,21 @@ function onResize() {
             <option>horserpower (metric)</option>
         </select>
         <p> To </p>
-        <select id="Select2">
+        <select id="convertedPowerUnit">
            <option>megawatt</option>s
             <option>kilowatt</option>
             <option>watt</option>s
             <option>horserpower (electric)</option>
             <option>horserpower (metric)</option>
         </select>
-        <p id="P1"> Result: </p>
-        <button id="Button1" class="convertBtn">Convert</button>
+        <p id="powerResult"> Result: </p>
+        <button class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-mass" data-layout="drawer-layout" data-title="Mass">
         <h1> Mass conversion </h1>
         <p> Convert </p>
-        <input type="number" id="Number2" placeholder="Enter mass">
-        <select id="Select3">
+        <input type="number" id="massValue" placeholder="Enter mass">
+        <select id="originalMassUnit">
             <option>tonne</option>
             <option>kilogram</option>
             <option>gram</option>
@@ -181,7 +181,7 @@ function onResize() {
             <option>ounce (oz)</option>
         </select>
         <p> To </p>
-        <select id="Select4">
+        <select id="convertedMassUnit">
             <option>tonne</option>
             <option>kilogram</option>
             <option>gram</option>
@@ -192,8 +192,8 @@ function onResize() {
             <option>pound (lb)</option>
             <option>ounce (oz)</option>
         </select>
-        <p id="P2"> Result: </p>
-        <button id="Button2" class="convertBtn">Convert</button>
+        <p id="massResult"> Result: </p>
+        <button class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
         <h1> Settings </h1>
@@ -211,8 +211,6 @@ function onResize() {
             <option>none</option>
             <option>space</option>
             <option>comma</option>
-            <option>4</option>
-            <option>5</option>
         </select>
         <p>example: </p>
         <button id="saveSettingsBtn">Save changes</button>
@@ -265,6 +263,6 @@ function onResize() {
     <script>
         var app = new kendo.mobile.Application(document.body);
     </script>
-    <script type="text/javascript" src="js/conversion.min.js"></script>
+    <script type="text/javascript" src="js/conversion.js"></script>
 </body>
 </html>

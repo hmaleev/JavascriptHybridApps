@@ -6,6 +6,8 @@ convertBtn.click(function () {
     var temperatureDrawer = $("#drawer-temperature");
     var speedDrawer = $("#drawer-speed");
     var distanceDrawer = $("#drawer-distance");
+    var powerDrawer = $("#drawer-power");
+    var massDrawer = $("#drawer-mass");
 
     if (temperatureDrawer.is(':visible')) {
         var temperatureConversion = new ConversionModule.TemperatureConvertion();
@@ -21,6 +23,16 @@ convertBtn.click(function () {
         var distanceConversion = new ConversionModule.DistanceConvertion();
         var newUnit = $("#convertedDistanceUnit").val();
         $("#distanceResult").html("RESULT: " + distanceConversion.convert() + " " + newUnit);
+    }
+    if (powerDrawer.is(':visible')) {
+        var powerConversion = new ConversionModule.PowerConvertion();
+        var newUnit = $("#convertedPowerUnit").val();
+        $("#powerResult").html("RESULT: " + powerConversion.convert() + " " + newUnit);
+    }
+    if (massDrawer.is(':visible')) {
+        var massConversion = new ConversionModule.MassConvertion();
+        var newUnit = $("#convertedMassUnit").val();
+        $("#massResult").html("RESULT: " + massConversion.convert() + " " + newUnit);
     }
     navigator.notification.vibrate(300);
 })
@@ -211,10 +223,122 @@ var ConversionModule = (function() {
 		return SpeedConvertion;
 	}());
 
+    //----------POWER CONVERSION----------
+	function currentUnitToWatts(unit, currentValue) {
+	    //currentUnitValue = parseFloat(currentUnitValue);
+	    switch (unit) {
+	        case "megawatt":
+	            return currentValue * 1000000;
+	        case "kilowatt":
+	            return currentValue * 1000;
+	        case "watt":
+	            return currentValue;
+	        case "horserpower (electric)":
+	            return currentValue / 3.6;
+	        case "horserpower (metric)":
+	            return currentValue / 2.23694;
+	    }
+	}
+	function wattsToNewPowerUnit(newUnit, temporaryValue) {
+	    switch (newUnit) {
+	        case "megawatt":
+	            return temporaryValue / 1000000;
+	        case "kilowatt":
+	            return temporaryValue / 1000;
+	        case "watt":
+	            return temporaryValue;
+	        case "horserpower (electric)":
+	            return currentValue / 3.6;
+	        case "horserpower (metric)":
+	            return currentValue / 2.23694;
+	    }
+	}
+	var PowerConvertion = (function () {
+	    var PowerConvertion = function () { };
+
+	    PowerConvertion.prototype.convert = function () {
+	        var currentUnit = $("#originalPowerUnit").val();
+	        var currentValue = parseFloat($("#powerValue").val());
+	        var newUnit = $("#convertedPowerUnit").val();
+	        var temporaryValue = currentUnitToWatts(currentUnit, currentValue);
+	        var precision = loadSettings().precision;
+
+	        var finalValue = wattsToNewPowerUnit(newUnit, temporaryValue).toFixed(precision);
+	        return finalValue;
+	    }
+	    return PowerConvertion;
+	}());
+
+    //----------MASS CONVERSION----------
+	function currentUnitToKilograms(unit, currentValue) {
+	    //currentUnitValue = parseFloat(currentUnitValue);
+	    switch (unit) {
+	        case "tonne":
+	            return currentValue * 1000;
+	        case "kilogram":
+	            return currentValue ;
+	        case "gram":
+	            return currentValue / 1000;
+	        case "miligram":
+	            return currentValue / 1000000;
+	        case "long ton (UK)":
+	            return currentValue / 3.6;
+	        case "short ton (US)":
+	            return currentValue / 2.23694;
+	        case "stone":
+	            return currentValue;
+	        case "pound (lb)":
+	            return currentValue / 3.6;
+	        case "ounce (oz)":
+	            return currentValue / 2.23694;
+
+	    }
+	}
+	function kilogramsToNewMassUnit(newUnit, temporaryValue) {
+	    switch (newUnit) {
+	        case "tonne":
+	            return temporaryValue / 1000;
+	        case "kilogram":
+	            return temporaryValue;
+	        case "gram":
+	            return temporaryValue * 1000;
+	        case "miligram":
+	            return temporaryValue * 1000000;
+	        case "long ton (UK)":
+	            return temporaryValue / 3.6;
+	        case "short ton (US)":
+	            return temporaryValue / 2.23694;
+	        case "stone":
+	            return temporaryValue;
+	        case "pound (lb)":
+	            return temporaryValue / 3.6;
+	        case "ounce (oz)":
+	            return temporaryValue / 2.23694;
+	    }
+	}
+	var MassConvertion = (function () {
+	    var MassConvertion = function () { };
+
+	    MassConvertion.prototype.convert = function () {
+	        var currentUnit = $("#originalMassUnit").val();
+	        var currentValue = parseFloat($("#massValue").val());
+	        var newUnit = $("#convertedMassUnit").val();
+	        var temporaryValue = currentUnitToKilograms(currentUnit, currentValue);
+	        var precision = loadSettings().precision;
+
+	        var finalValue = kilogramsToNewMassUnit(newUnit, temporaryValue).toFixed(precision);
+	        return finalValue;
+	    }
+	    return MassConvertion;
+	}());
+
+
 	return {
 		TemperatureConvertion: TemperatureConvertion,
 		DistanceConvertion: DistanceConvertion,
 		SpeedConvertion: SpeedConvertion,
+		MassConvertion: MassConvertion,
+		PowerConvertion:PowerConvertion,
         Settings:Settings
 	};
 }());
