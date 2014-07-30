@@ -71,7 +71,6 @@ function onResize() {
 }
 </script>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
-        <h1> Distance conversion</h1>
         <p> Convert </p>
         <input type="number" id="distanceValue" placeholder="Enter distance">
         <select id="originalDistanceUnit">	
@@ -101,7 +100,6 @@ function onResize() {
         <button id="distanceConversionBtn" class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
-        <h1> Speed conversion </h1>
         <p> Convert </p>
         <input type="number" id="speedValue" placeholder="Enter speed">
         <select id="originalSpeedUnit">
@@ -125,7 +123,6 @@ function onResize() {
         <button id="speedConversionBtn" class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
-        <h1> Temperature conversion </h1>
         <p> Convert </p>
         <input type="number" id="temperatureValue" placeholder="Enter temperature">
         <select id="originalTemperatureUnit">
@@ -142,9 +139,7 @@ function onResize() {
         <p id="temperatureResult"> Result: </p>
         <button id="temperatureConversionBtn" class="convertBtn">Convert</button>
     </div>
-
     <div data-role="view" id="drawer-power" data-layout="drawer-layout" data-title="Power">
-        <h1> Power conversion </h1>
         <p> Convert </p>
         <input type="number" id="powerValue" placeholder="Enter power">
         <select id="originalPowerUnit">
@@ -166,7 +161,6 @@ function onResize() {
         <button class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-mass" data-layout="drawer-layout" data-title="Mass">
-        <h1> Mass conversion </h1>
         <p> Convert </p>
         <input type="number" id="massValue" placeholder="Enter mass">
         <select id="originalMassUnit">
@@ -196,7 +190,6 @@ function onResize() {
         <button class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
-        <h1> Settings </h1>
         <p>Digits after the decimal separator</p>
         <select id="precision">
             <option>1</option>
@@ -234,12 +227,23 @@ function onResize() {
     <div data-role="layout" data-id="drawer-layout">
         <header data-role="header">
             <div data-role="navbar">
-                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
+                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left">Menu</a>
                 <span data-role="view-title"></span>
             </div>
         </header>
     </div>
     <style>
+        
+        .km-android .km-navbar .km-view-title /* After Q2 2012 SP1 */
+        {
+            visibility: visible;
+        }
+        .km-android .km-view:not(.km-splitview) {
+            -webkit-box-direction: normal;
+            -moz-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
         .km-ios #my-drawer .km-content, .km-android #my-drawer .km-content, .km-blackberry #my-drawer .km-content,
         .km-ios #my-drawer .km-list > li, .km-android #my-drawer .km-list > li, .km-blackberry #my-drawer .km-list > li,
         .km-ios #my-drawer .km-listview-link > .km-icon, .km-android #my-drawer .km-listview-link > .km-icon, .km-blackberry #my-drawer .km-listview-link > .km-icon,
@@ -262,7 +266,9 @@ function onResize() {
         }
     </style>
     <script>
-        var app = new kendo.mobile.Application(document.body);
+        var app = new kendo.mobile.Application($(document.body), {
+            skin: "android-dark"
+        });
     </script>
     <script type="text/javascript" src="js/conversion.min.js"></script>
 </body>
