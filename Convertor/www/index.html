@@ -70,7 +70,7 @@ function onResize() {
     var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
 }
 </script>
-    <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="distance Items">
+    <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="Distance">
         <p> Convert </p>
         <input type="number" id="distanceValue" placeholder="Enter distance">
         <select id="originalDistanceUnit">	
@@ -190,7 +190,7 @@ function onResize() {
         <button class="convertBtn">Convert</button>
     </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
-        <p>Digits after the decimal separator</p>
+        <p>Significant digits after the decimal separator:</p>
         <select id="precision">
             <option>1</option>
             <option>2</option>
@@ -198,15 +198,19 @@ function onResize() {
             <option>4</option>
             <option>5</option>
         </select>
-        <p id="precisionExample"></p>
-        <p id="warningMessage">IMPORTANT: Trailing zeroes will not be shown, regardless of the precision setting!</p>
-        <p> Display result as </p>
+        <p> Display result as: </p>
         <select id="separator">
             <option>123456.78</option>
             <option>123 456,78</option>
             <option>123.456,78</option>
             <option>123,456.78</option>
         </select>
+        <p> Select theme: </p>
+        <select id="theme">
+            <option>Dark</option>
+            <option>Light</option>
+        </select>
+		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
         <button id="saveSettingsBtn">Save changes</button>
     </div>
     <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
@@ -227,7 +231,7 @@ function onResize() {
     <div data-role="layout" data-id="drawer-layout">
         <header data-role="header">
             <div data-role="navbar">
-                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left">Menu</a>
+                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left" id="drawerBtn">Menu</a>
                 <span data-role="view-title"></span>
             </div>
         </header>
@@ -251,25 +255,36 @@ function onResize() {
             background-color: #4e4e4e;
             color: #fff;
         }
-
         .km-ios #my-drawer .km-group-title,
         .km-blackberry #my-drawer .km-group-title {
             background-color: #6e6e6e;
             color: #fff;
         }
-
         .km-drawer-button:before, .km-drawer-button:after {
             content: "\E0F1";
         }
-        .km-text {
-            color:white;
+        .km-group-title .km-text {
+            color: white;
         }
     </style>
+    <script type="text/javascript" src="js/conversion.js"></script>
     <script>
-        var app = new kendo.mobile.Application($(document.body), {
-            skin: "android-dark"
-        });
+        var theme = localStorage.getItem("theme");
+        if (theme ==="Dark") {
+            var app = new kendo.mobile.Application($(document.body), {
+                skin: "android-dark"
+            });
+            $(".km-text").css("color", "white");
+        }
+        if (theme === "Light") {
+            var app = new kendo.mobile.Application($(document.body), {
+                skin: "android-light"
+            });
+            $(".km-text").css("color", "black");
+        }
+        if (theme === null) {
+            var app = new kendo.mobile.Application(document.body);
+        }
     </script>
-    <script type="text/javascript" src="js/conversion.min.js"></script>
 </body>
 </html>

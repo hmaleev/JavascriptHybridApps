@@ -54,10 +54,13 @@ var ConversionModule = (function() {
         localStorage.setItem("precision", precision);
         var separator = $("#separator").val();
         localStorage.setItem("separator", separator);
+		var theme = $("#theme").val();
+        localStorage.setItem("theme", theme);
     }
     function loadSettings() {
         var precision = localStorage.getItem("precision");
         var separator = localStorage.getItem("separator");
+		var theme = localStorage.getItem("theme");
         if (precision === null) {
             precision = 2;
         }
@@ -68,6 +71,7 @@ var ConversionModule = (function() {
         var loadedSettigs = {};
         loadedSettigs.precision = precision;
         loadedSettigs.separator = separator;
+		loadedSettigs.theme = theme;
         console.log(loadedSettigs);
         return loadedSettigs;
     }
