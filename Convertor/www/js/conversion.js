@@ -1,4 +1,4 @@
-var saveSettigsBtn = $("#saveSettingsBtn");
+﻿var saveSettigsBtn = $("#saveSettingsBtn");
 var convertBtn = $(".convertBtn");
 
 convertBtn.click(function () {
@@ -8,6 +8,8 @@ convertBtn.click(function () {
     var distanceDrawer = $("#drawer-distance");
     var powerDrawer = $("#drawer-power");
     var massDrawer = $("#drawer-mass");
+    var areaDrawer = $("#drawer-area");
+    var volumeDrawer = $("#drawer-volume");
 
     if (temperatureDrawer.is(':visible')) {
         var temperatureConversion = new ConversionModule.TemperatureConvertion();
@@ -34,6 +36,16 @@ convertBtn.click(function () {
         var newUnit = $("#convertedMassUnit").val();
         $("#massResult").html("RESULT: " + massConversion.convert() + " " + newUnit);
     }
+    if (areaDrawer.is(':visible')) {
+        var areaConversion = new ConversionModule.AreaConvertion();
+        var newUnit = $("#convertedAreaUnit").val();
+        $("#areaResult").html("RESULT: " + areaConversion.convert() + " " + newUnit);
+    }
+    if (volumeDrawer.is(':visible')) {
+        var volumeConversion = new ConversionModule.VolumeConvertion();
+        var newUnit = $("#convertedVolumeUnit").val();
+        $("#volumeResult").html("RESULT: " + volumeConversion.convert() + " " + newUnit);
+    }
     navigator.notification.vibrate(300);
 })
 
@@ -47,6 +59,29 @@ saveSettigsBtn.click(function () {
 // --------------------------REVEALING MODULE PATTERN-------------------------
 
 var ConversionModule = (function() {
+
+    function returnLocalizedResult(finalValue) {
+        var separator = loadSettings().separator;
+        switch (separator) {
+            case "123456.78":
+                return finalValue;
+            case "123.456,78":
+                finalValue = parseFloat(finalValue).toLocaleString("de-de", { maximumFractionDigits: 5 });
+                console.log("---after locale---  " + finalValue);
+                return finalValue;
+            case "123,456.78":
+                finalValue = parseFloat(finalValue).toLocaleString("en-us", { maximumFractionDigits: 5 });
+                console.log("---after locale---  " + finalValue);
+                return finalValue;
+            case "123 456,78":
+                finalValue = parseFloat(finalValue).toLocaleString("bg-bg", { maximumFractionDigits: 5 });
+                console.log("---after locale---  " + finalValue);
+                return finalValue;
+            default:
+                finalValue = parseFloat(finalValue);
+                return finalValue;
+        }
+    }
 
     //----------SETTINGS----------
     function saveSettings() {
@@ -111,29 +146,6 @@ var ConversionModule = (function() {
 				return (temporaryValue * 1.8) + 32.0;
 		}
 	}
-
-	function returnLocalizedResult(finalValue) {
-	    var separator = loadSettings().separator;
-	    switch (separator) {
-	        case "123456.78":
-	            return finalValue;
-	        case "123.456,78":
-	            finalValue = parseFloat(finalValue).toLocaleString("de-de", { maximumFractionDigits: 5 });
-	            console.log( "---after locale---  " + finalValue);
-	            return finalValue;
-	        case "123,456.78":
-	            finalValue = parseFloat(finalValue).toLocaleString("en-us", { maximumFractionDigits: 5 });
-	            console.log("---after locale---  " + finalValue);
-	            return finalValue;
-	        case "123 456,78":
-	            finalValue = parseFloat(finalValue).toLocaleString("bg-bg", { maximumFractionDigits: 5 });
-	            console.log("---after locale---  " + finalValue);
-	            return finalValue;
-	        default:
-	            finalValue = parseFloat(finalValue);
-	            return finalValue;
-	    }
-	}
 	var TemperatureConvertion = (function () {
 	    var TemperatureConvertion = function () { };
 
@@ -161,7 +173,7 @@ var ConversionModule = (function() {
 				return currentValue;
 			case "Centimeters":
 				return currentValue / 100;
-			case "Milimeters":
+		    case "Millimeters":
 				return currentValue / 1000;
 			case "Inches":
 				return currentValue / 39.370;
@@ -183,7 +195,7 @@ var ConversionModule = (function() {
 				return temporaryValue;
 			case "Centimeters":
 				return temporaryValue * 100;
-			case "Milimeters":
+		    case "Millimeters":
 				return temporaryValue * 1000;
 			case "Inches":
 				return temporaryValue * 39.370;
@@ -366,13 +378,163 @@ var ConversionModule = (function() {
 	    return MassConvertion;
 	}());
 
+    //----------AREA CONVERSION----------
+	function currentUnitToSquareMeters(unit, currentValue) {
+	    switch (unit) {
+	        case "square metre (m²)":
+	            return currentValue;
+	        case "square kilometre (km²)":
+	            return currentValue * 1000000;
+	        case "square centimetre (cm²)":
+	            return currentValue / 10000;
+	        case "square milimetre (mm²)":
+	            return currentValue / 1000000;
+	        case "square mile (mi²)":
+	            return currentValue * 2589988.1;
+	        case "square yard (yd²)":
+	            return currentValue * 0.836127392;
+	        case "square foot (ft²)":
+	            return currentValue * 0.0929030436;
+	        case "square inch (in²)":
+	            return currentValue * 0.00064516;
+	        case "acre":
+	            return currentValue * 4046.85642;
+	        case "hectare":
+	            return currentValue * 10000;
+	    }
+	}
+	function squareMetersToNewAreaUnit(newUnit, temporaryValue) {
+	    switch (newUnit) {
+	        case "square metre (m²)":
+	            return temporaryValue;
+	        case "square kilometre (km²)":
+	            return temporaryValue / 1000000;
+	        case "square centimetre (cm²)":
+	            return temporaryValue * 10000;
+	        case "square milimetre (mm²)":
+	            return temporaryValue * 1000000;
+	        case "square mile (mi²)":
+	            return temporaryValue / 2589988.1;
+	        case "square yard (yd²)":
+	            return temporaryValue / 0.836127392;
+	        case "square foot (ft²)":
+	            return temporaryValue / 0.0929030436;
+	        case "square inch (in²)":
+	            return temporaryValue / 0.00064516;
+	        case "acre":
+	            return temporaryValue / 4046.85642;
+	        case "hectare":
+	            return temporaryValue / 10000;
+	    }
+	}
+	var AreaConvertion = (function () {
+	    var AreaConvertion = function () { };
+
+	    AreaConvertion.prototype.convert = function () {
+	        var currentUnit = $("#originalAreaUnit").val();
+	        var currentValue = parseFloat($("#areaValue").val());
+	        var newUnit = $("#convertedAreaUnit").val();
+	        var temporaryValue = currentUnitToSquareMeters(currentUnit, currentValue);
+	        var precision = loadSettings().precision;
+
+	        var finalValue = squareMetersToNewAreaUnit(newUnit, temporaryValue).toFixed(precision);
+	        finalValue = returnLocalizedResult(finalValue);
+	        return finalValue;
+	    }
+	    return AreaConvertion;
+	}());
+
+    //----------VOLUME CONVERSION----------
+	function currentUnitToLiters(unit, currentValue) {
+	    //currentUnitValue = parseFloat(currentUnitValue);
+	    switch (unit) {
+	        case "liter":
+	            return currentValue;
+	        case "milliliter":
+	            return currentValue / 1000;
+	        case "cubic  meter (mm³)":
+	            return currentValue * 1000;
+	        case "cubic  decimeter (dm³)":
+	            return currentValue;
+	        case "cubic  centimeter (cc)":
+	            return currentValue / 1000;
+	        case "gallon (UK)":
+	            return currentValue * 4.54608996;
+	        case "gallon (US)":
+	            return currentValue * 3.78541182;
+	        case "barrel (petroleum)":
+	            return currentValue * 158.987294;
+	        case "quart (UK)":
+	            return currentValue * 1.1365225;
+	        case "quart (US)":
+	            return currentValue * 0.946352954;
+	        case "pint (UK)":
+	            return currentValue * 0.568261246;
+	        case "pint (US)":
+	            return currentValue * 0.473176477;
+	        case "fluid once (UK)":
+	            return currentValue * 0.0284130623;
+	        case "fluid once (US)":
+	            return currentValue * 0.0295735293;
+	    }
+	}
+	function litersToNewVolumeUnit(newUnit, temporaryValue) {
+	    switch (newUnit) {
+	        case "liter":
+	            return temporaryValue;
+	        case "milliliter":
+	            return temporaryValue * 1000;
+	        case "cubic meter (mm³)":
+	            return temporaryValue / 1000;
+	        case "cubic decimeter (dm³)":
+	            return temporaryValue;
+	        case "cubic centimeter (cc)":
+	            return temporaryValue * 1000;
+	        case "gallon (UK)":
+	            return temporaryValue / 4.54608996;
+	        case "gallon (US)":
+	            return temporaryValue / 3.78541182;
+	        case "barrel (petroleum)":
+	            return temporaryValue / 158.987294;
+	        case "quart (UK)":
+	            return temporaryValue / 1.1365225;
+	        case "quart (US)":
+	            return temporaryValue / 0.946352954;
+	        case "pint (UK)":
+	            return temporaryValue / 0.568261246;
+	        case "pint (US)":
+	            return temporaryValue / 0.473176477;
+	        case "fluid once (UK)":
+	            return temporaryValue / 0.0284130623;
+	        case "fluid once (US)":
+	            return temporaryValue / 0.0295735293;
+	    }
+	}
+	var VolumeConvertion = (function () {
+	    var VolumeConvertion = function () { };
+
+	    VolumeConvertion.prototype.convert = function () {
+	        var currentUnit = $("#originalVolumeUnit").val();
+	        var currentValue = parseFloat($("#volumeValue").val());
+	        var newUnit = $("#convertedVolumeUnit").val();
+	        var temporaryValue = currentUnitToLiters(currentUnit, currentValue);
+	        var precision = loadSettings().precision;
+
+	        var finalValue = litersToNewVolumeUnit(newUnit, temporaryValue).toFixed(precision);
+	        finalValue = returnLocalizedResult(finalValue);
+	        return finalValue;
+	    }
+	    return VolumeConvertion;
+	}());
 
 	return {
 		TemperatureConvertion: TemperatureConvertion,
 		DistanceConvertion: DistanceConvertion,
 		SpeedConvertion: SpeedConvertion,
 		MassConvertion: MassConvertion,
-		PowerConvertion:PowerConvertion,
+		PowerConvertion: PowerConvertion,
+		AreaConvertion: AreaConvertion,
+		VolumeConvertion: VolumeConvertion,
         Settings:Settings
 	};
 }());

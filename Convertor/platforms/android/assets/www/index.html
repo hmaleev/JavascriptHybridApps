@@ -77,7 +77,7 @@ function onResize() {
             <option>Kilometers</option>
             <option>Meters</option>
             <option>Centimeters</option>
-			<option>Milimeters</option>
+			<option>Millimeters</option>
             <option>Inches</option>
             <option>Feet</option>
             <option>Yards</option>
@@ -89,7 +89,7 @@ function onResize() {
             <option>Kilometers</option>
             <option>Meters</option>
             <option>Centimeters</option>
-			<option>Milimeters</option>
+			<option>Millimeters</option>
             <option>Inches</option>
             <option>Feet</option>
             <option>Yards</option>
@@ -189,6 +189,76 @@ function onResize() {
         <p id="massResult"> Result: </p>
         <button class="convertBtn">Convert</button>
     </div>
+	<div data-role="view" id="drawer-volume" data-layout="drawer-layout" data-title="Volume">
+        <p> Convert </p>
+        <input type="number" id="volumeValue" placeholder="Enter volume">
+        <select id="originalVolumeUnit">
+            <option>liter</option>
+			<option>milliliter</option>
+			<option>cubic meter (mm&sup3)</option>
+            <option>cubic decimeter (dm&sup3)</option>
+            <option>cubic centimeter (cc)</option>
+            <option>gallon (UK)</option>
+            <option>gallon (US)</option>
+			<option>barrel (petroleum)</option>
+            <option>quart (UK)</option>
+            <option>quart (US)</option>
+            <option>pint (UK)</option>
+			<option>pint (US)</option>
+			<option>fluid once (UK) </option>
+			<option>fluid once (US) </option>
+        </select>
+        <p> To </p>
+        <select id="convertedVolumeUnit">
+            <option>liter</option>
+			<option>milliliter</option>
+			<option>cubic meter (mm&sup3)</option>
+            <option>cubic decimeter (dm&sup3)</option>
+            <option>cubic centimeter (cc)</option>
+            <option>gallon (UK)</option>
+            <option>gallon (US)</option>
+			<option>barrel (petroleum)</option>
+            <option>quart (UK)</option>
+            <option>quart (US)</option>
+            <option>pint (UK)</option>
+			<option>pint (US)</option>
+			<option>fluid once (UK) </option>
+			<option>fluid once (US) </option>
+        </select>
+        <p id="volumeResult"> Result: </p>
+        <button class="convertBtn">Convert</button>
+    </div>
+    <div data-role="view" id="drawer-area" data-layout="drawer-layout" data-title="Area">
+        <p> Convert </p>
+        <input type="number" id="areaValue" placeholder="Enter area">
+        <select id="originalAreaUnit">
+            <option>square kilometre (km&sup2)</option>
+            <option>square metre (m&sup2)</option>
+            <option>square centimetre (cm&sup2)</option>
+            <option>square milimetre (mm&sup2)</option>
+            <option>square mile (mi&sup2)</option>
+            <option>square yard (yd&sup2)</option>
+            <option>square foot (ft&sup2)</option>
+            <option>square inch (in&sup2)</option>
+            <option>acre</option>
+			<option>hectare</option>
+		</select>
+        <p> To </p>
+        <select id="convertedAreaUnit">
+            <option>square kilometre (km&sup2)</option>
+            <option>square metre (m&sup2)</option>
+            <option>square centimetre (cm&sup2)</option>
+            <option>square milimetre (mm&sup2)</option>
+            <option>square mile (mi&sup2)</option>
+            <option>square yard (yd&sup2)</option>
+            <option>square foot (ft&sup2)</option>
+            <option>square inch (in&sup2)</option>
+            <option>acre</option>
+			<option>hectare</option>
+        </select>
+        <p id="areaResult"> Result: </p>
+        <button class="convertBtn">Convert</button>
+    </div>
     <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
         <p>Significant digits after the decimal separator:</p>
         <select id="precision">
@@ -213,16 +283,18 @@ function onResize() {
 		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
         <button id="saveSettingsBtn">Save changes</button>
     </div>
-    <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
+    <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-area', 'drawer-volume', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
         <ul data-role="listview" data-type="group">
             <li>
                 Categories
                 <ul>
                     <li><a href="#drawer-distance" data-transition="none">Distance</a></li>
+					<li><a href="#drawer-area" data-transition="none">Area</a></li>
+                    <li><a href="#drawer-mass" data-transition="none">Mass</a></li>
+                    <li><a href="#drawer-volume" data-transition="none">Volume</a></li>
                     <li><a href="#drawer-temperature" data-transition="none">Temperature</a></li>
                     <li><a href="#drawer-speed" data-transition="none">Speed</a></li>
                     <li><a href="#drawer-power" data-transition="none">Power</a></li>
-                    <li><a href="#drawer-mass" data-transition="none">Mass</a></li>
                     <li><a href="#drawer-settings" data-transition="none">Settings</a></li>
                 </ul>
             </li>
@@ -267,7 +339,7 @@ function onResize() {
             color: white;
         }
     </style>
-    <script type="text/javascript" src="js/conversion.js"></script>
+    <script type="text/javascript" src="js/conversion.min.js"></script>
     <script>
         var theme = localStorage.getItem("theme");
         if (theme ==="Dark") {
