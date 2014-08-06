@@ -1,5 +1,5 @@
 
-select, input {
+select, input, .k-input {
 	display: block;
 	width: 99%;
 	margin-top: 1%;
@@ -18,7 +18,22 @@ button {
 	margin-top: 1%;
 	height: 10%;
 	font-size: 1.5em;
+	text-align:center;
 }
+
+.kendoBtn {
+    display:table;
+	height: 10%;
+    width:99%;
+}
+.convertBtn {
+    display:table-cell !important;
+	margin-top: 1%;
+	font-size: 1.5em;
+    vertical-align:middle;
+    text-align:center;
+}
+
 #temperatureResult, #distanceResult, #speedResult, #powerResult, #massResult{
 	margin: 3% 0 3% 0;
 	padding: 0;

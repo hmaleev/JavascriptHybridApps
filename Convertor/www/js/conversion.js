@@ -1,6 +1,26 @@
 ﻿var saveSettigsBtn = $("#saveSettingsBtn");
 var convertBtn = $(".convertBtn");
 
+$("#originalDistanceUnit").kendoDropDownList();
+$("#convertedDistanceUnit").kendoDropDownList();
+
+$("#originalTemperatureUnit").kendoDropDownList();
+$("#convertedTemperatureUnit").kendoDropDownList();
+
+$("#originalSpeedUnit").kendoDropDownList();
+$("#convertedSpeedUnit").kendoDropDownList();
+
+$("#originalPowerUnit").kendoDropDownList();
+$("#convertedPowerUnit").kendoDropDownList();
+
+$("#originalMassUnit").kendoDropDownList();
+$("#convertedMassUnit").kendoDropDownList();
+
+$("#originalAreaUnit").kendoDropDownList();
+$("#convertedAreaUnit").kendoDropDownList();
+
+$("#originalVolumeUnit").kendoDropDownList();
+$("#convertedVolumeUnit").kendoDropDownList();
 convertBtn.click(function () {
 
     var temperatureDrawer = $("#drawer-temperature");
@@ -22,8 +42,11 @@ convertBtn.click(function () {
         $("#speedResult").html("RESULT: " + speedConversion.convert() + " " + newUnit);
     }
     if (distanceDrawer.is(':visible')) {
+       
         var distanceConversion = new ConversionModule.DistanceConvertion();
         var newUnit = $("#convertedDistanceUnit").val();
+      
+
         $("#distanceResult").html("RESULT: " + distanceConversion.convert() + " " + newUnit);
     }
     if (powerDrawer.is(':visible')) {
@@ -85,11 +108,16 @@ var ConversionModule = (function() {
 
     //----------SETTINGS----------
     function saveSettings() {
-        var precision = $("#precision").val();
+       // $("#precision").kendoDropDownList();
+
+        $("#precision").kendoDropDownList();
+        var precision = $("#precision").data("kendoDropDownList");
+
+        //var precision = $("#precision").data("kendoDropDownList");
         localStorage.setItem("precision", precision);
-        var separator = $("#separator").val();
+        var separator = $("#separator").kendoDropDownList().val();
         localStorage.setItem("separator", separator);
-		var theme = $("#theme").val();
+        var theme = $("#theme").kendoDropDownList().val();
         localStorage.setItem("theme", theme);
     }
     function loadSettings() {
