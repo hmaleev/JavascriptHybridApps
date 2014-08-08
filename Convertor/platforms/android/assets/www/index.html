@@ -13,61 +13,85 @@
     <script src="js/jquery.min.js"></script>
 	<script src="js/kendo.all.min.js"></script> 
 </head>
-<body onload="onLoad()" onresize="onResize()">
+ <body onload="onLoad()" onresize="onResize()">
 <script>
-var adId = 'ca-app-pub-3348882712202734/6335186806';
-document.addEventListener("deviceready", onDeviceReady, false);
+var flurry_android_key = 'R922J372Z4FF8HHK32Z5';
+var adId = flurry_android_key;
 function onLoad() {
-      
-    // more callback to handle Ad events
-    document.addEventListener('onReceiveAd', function () {
-    window.plugins.AdMob.showAd(true);
-    onResize();
-    });
+document.addEventListener("deviceready", onDeviceReady, false);
+createAd();
+showAd(true);
+// more callback to handle Ad events
+document.addEventListener('onReceiveAd', function(){
+});
+document.addEventListener('onFailedToReceiveAd', function(data){
+});
+document.addEventListener('onPresentAd', function(){
+});
+document.addEventListener('onDismissAd', function(){
+});
+document.addEventListener('onLeaveToAd', function(){
+});
 }
 function createAd() {
-    if ( window.plugins && window.plugins.AdMob ) {
-        var am = window.plugins.AdMob;
-        am.createBannerView(
-                            {
-                            'publisherId': adId,
-                            'adSize': am.AD_SIZE.SMART_BANNER,
-                            'bannerAtTop': false,
-                            'overlap': false
-                            }, function() {
-                            am.requestAd( { 'isTesting':false }, function() {
-                                            }, function() {
-                                            console.log('failed to request ad');
-                                            })
-                            }, function(){
-                            console.log( "failed to create ad view" );
-                            });
-    } else {
-        console.log('AdMob plugin not available/ready.');
-    }
+if ( window.plugins && window.plugins.Flurry ) {
+var am = window.plugins.Flurry;
+am.createBannerView(
+{
+'publisherId': adId,
+'adSize': am.AD_SIZE.BANNER,
+'bannerAtTop': false
+}, function() {
+am.requestAd( { 'isTesting':false }, function() {
+am.showAd( true, function(){ onResize(); },function(){} );
+}, function() {
+alert('failed to request ad');
+})
+}, function(){
+alert( "failed to create ad view" );
+});
+} else {
+alert('Flurry plugin not available/ready.');
+}
 }
 function removeAd() {
-    if ( window.plugins && window.plugins.AdMob ) {
-        var am = window.plugins.AdMob;
-        am.destroyBannerView({},function(){onResize();},function(){});
-    }
-
+if ( window.plugins && window.plugins.Flurry ) {
+var am = window.plugins.Flurry;
+am.destroyBannerView({},function(){onResize();},function(){});
+}
 }
 function onDeviceReady() {
-    if (navigator.connection.type !== Connection.NONE) {
-        createAd();
-    }
+//createAd();
 }
 function showAd( bshow ) {
-    if ( window.plugins && window.plugins.AdMob ) {
-        var am = window.plugins.AdMob;
-        am.showAd( bshow, function(){ onResize(); }, function(){ console.log('please create ad first'); } );
-    } else {
-        console.log('AdMob plugin not available/ready.');
-    } 
+if ( window.plugins && window.plugins.Flurry ) {
+var am = window.plugins.Flurry;
+am.showAd( bshow, function(){onResize();}, function(){ alert('please create ad first'); } );
+} else {
+alert('Flurry plugin not available/ready.');
+}
+}
+function showInterstitialAd() {
+var am = window.plugins.Flurry;
+am.createInterstitialView(
+{
+'publisherId': adId,
+},
+function() {
+am.requestInterstitialAd( { 'isTesting':true }, function() {
+//am.showAd( true ); // it's for banner ad only
+}, function() {
+alert('failed to request ad');
+});
+},
+function() {
+alert("Interstitial failed");
+}
+);
 }
 function onResize() {
-    var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+document.getElementById('sizeinfo').innerHTML = msg;
 }
 </script>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="Distance">

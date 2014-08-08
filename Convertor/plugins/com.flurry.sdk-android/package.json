@@ -1,0 +1,22 @@
+{
+    "version": "4.0.0",
+    "name": "com.flurry.sdk-android",
+    "cordova_name": "Flurry SDK for Android",
+    "description": "add Flurry SDK for Android to cordova project, as dependency of other plugins",
+    "keywords": [
+        "ad",
+        "ads",
+        "sdk",
+        "flurry",
+        "admob"
+    ],
+    "platforms": [
+        "android"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0"
+        }
+    ]
+}
