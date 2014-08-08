@@ -26,7 +26,7 @@ button {
 	height: 10%;
     width:99%;
 }
-.convertBtn {
+.convertBtn, #saveSettingsBtn {
     display:table-cell !important;
 	margin-top: 1%;
 	font-size: 1.5em;

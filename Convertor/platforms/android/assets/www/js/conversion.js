@@ -21,6 +21,10 @@ $("#convertedAreaUnit").kendoDropDownList();
 
 $("#originalVolumeUnit").kendoDropDownList();
 $("#convertedVolumeUnit").kendoDropDownList();
+
+$("#precision").kendoDropDownList();
+$("#separator").kendoDropDownList();
+$("#theme").kendoDropDownList();
 convertBtn.click(function () {
 
     var temperatureDrawer = $("#drawer-temperature");
@@ -108,16 +112,13 @@ var ConversionModule = (function() {
 
     //----------SETTINGS----------
     function saveSettings() {
-       // $("#precision").kendoDropDownList();
 
-        $("#precision").kendoDropDownList();
-        var precision = $("#precision").data("kendoDropDownList");
-
-        //var precision = $("#precision").data("kendoDropDownList");
+        var precision = $("#precision").val();
         localStorage.setItem("precision", precision);
-        var separator = $("#separator").kendoDropDownList().val();
+		
+        var separator = $("#separator").val();
         localStorage.setItem("separator", separator);
-        var theme = $("#theme").kendoDropDownList().val();
+        var theme = $("#theme").val();
         localStorage.setItem("theme", theme);
     }
     function loadSettings() {

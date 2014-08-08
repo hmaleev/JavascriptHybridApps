@@ -302,7 +302,10 @@ function onResize() {
             <option>Light</option>
         </select>
 		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
-        <button id="saveSettingsBtn">Save changes</button>
+        <!-- <button id="saveSettingsBtn">Save changes</button> -->
+		<div class="kendoBtn">
+		  <a data-role="button" id="saveSettingsBtn">Save changes</a>
+		</div>
     </div>
     <div data-role="drawer" id="my-drawer" style="width: 270px" data-views="['drawer-distance', 'drawer-temperature',  'drawer-speed', 'drawer-power', 'drawer-mass', 'drawer-area', 'drawer-volume', 'drawer-settings', '/kendo-ui/mobile/m/drawer/index.html']">
         <ul data-role="listview" data-type="group">
