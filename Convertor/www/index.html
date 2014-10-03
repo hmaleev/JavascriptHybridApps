@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<meta name="msapplication-tap-highlight" content="no" />
+	
     <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
     <script src="js/jquery.min.js"></script>
 	<script src="js/kendo.all.min.js"></script> 
@@ -95,6 +96,55 @@ document.getElementById('sizeinfo').innerHTML = msg;
 }
 </script>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="Distance">
+	
+	 <div id="example">
+            <span id="notification" style="display:none;"></span>
+            <script id="errorTemplate" type="text/x-kendo-template">
+               
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $("#hideAllNotifications").click(function(){
+                        notification.hide();
+                    });
+
+                    $(document).one("kendo:pageUnload", function(){ if (notification) { notification.hide(); } });
+
+                });
+            </script>
+
+            <style>
+
+                .k-notification {
+                    border: 0;
+					margin:10px;
+                }
+
+                /* Error template */
+                .k-notification-error.k-group {
+                    background: rgba(100%,0%,0%,.7);
+                    color: #ffffff;
+				
+                }
+                .wrong-pass {
+                    width: 350px;
+                    height: 100px;
+                }
+                .wrong-pass h3 {
+                    font-size: 2em;
+                    padding: 0;
+                }
+				.errorMsg {
+					font-size: 1.5em;
+                    margin: -30px;
+				}
+                .wrong-pass img {
+                    float: left;
+                    margin: 30px 15px 30px 10px;
+                }
+            </style>
+        </div>
+	
         <p> Convert </p>
         <input type="number" id="distanceValue" placeholder="Enter distance">
         <select id="originalDistanceUnit">	
@@ -324,6 +374,9 @@ document.getElementById('sizeinfo').innerHTML = msg;
         <select id="theme">
             <option>Dark</option>
             <option>Light</option>
+			<option>ios</option>
+			<option>ios7</option>
+			<option>wp</option>
         </select>
 		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
         <!-- <button id="saveSettingsBtn">Save changes</button> -->
@@ -402,6 +455,21 @@ document.getElementById('sizeinfo').innerHTML = msg;
             });
             $(".km-text").css("color", "black");
         }
+		if (theme === "ios") {
+		  var app = new kendo.mobile.Application($(document.body), {
+                skin: "ios"
+            });
+		}
+		if (theme === "ios7") {
+		  var app = new kendo.mobile.Application($(document.body), {
+                skin: "ios7"
+            });
+		}
+		if (theme === "wp") {
+		  var app = new kendo.mobile.Application($(document.body), {
+                skin: "wp"
+            });
+		}
         if (theme === null) {
             var app = new kendo.mobile.Application(document.body);
         }

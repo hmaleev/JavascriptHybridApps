@@ -25,6 +25,7 @@ $("#convertedVolumeUnit").kendoDropDownList();
 $("#precision").kendoDropDownList();
 $("#separator").kendoDropDownList();
 $("#theme").kendoDropDownList();
+
 convertBtn.click(function () {
 
     var temperatureDrawer = $("#drawer-temperature");
@@ -39,40 +40,65 @@ convertBtn.click(function () {
         var temperatureConversion = new ConversionModule.TemperatureConvertion();
         var newUnit = $("#convertedTemperatureUnit").val();
         $("#temperatureResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Temperature must be a number</p></div>');
+		
     }
     if (speedDrawer.is(':visible')) {
         var speedConversion = new ConversionModule.SpeedConvertion();
         var newUnit = $("#convertedSpeedUnit").val();
+		if (speedConversion.convert() !== undefined) {
         $("#speedResult").html("RESULT: " + speedConversion.convert() + " " + newUnit);
+		} else {
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Speed must be a number</p></div>');
+		}
     }
     if (distanceDrawer.is(':visible')) {
        
         var distanceConversion = new ConversionModule.DistanceConvertion();
         var newUnit = $("#convertedDistanceUnit").val();
-      
-
         $("#distanceResult").html("RESULT: " + distanceConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Distance must be a number</p></div>');		
     }
     if (powerDrawer.is(':visible')) {
         var powerConversion = new ConversionModule.PowerConvertion();
         var newUnit = $("#convertedPowerUnit").val();
         $("#powerResult").html("RESULT: " + powerConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Power must be a number</p></div>');		
     }
     if (massDrawer.is(':visible')) {
         var massConversion = new ConversionModule.MassConvertion();
         var newUnit = $("#convertedMassUnit").val();
         $("#massResult").html("RESULT: " + massConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Mass must be a number</p></div>');		
     }
     if (areaDrawer.is(':visible')) {
         var areaConversion = new ConversionModule.AreaConvertion();
         var newUnit = $("#convertedAreaUnit").val();
         $("#areaResult").html("RESULT: " + areaConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Area must be a number</p></div>');		
     }
     if (volumeDrawer.is(':visible')) {
         var volumeConversion = new ConversionModule.VolumeConvertion();
         var newUnit = $("#convertedVolumeUnit").val();
         $("#volumeResult").html("RESULT: " + volumeConversion.convert() + " " + newUnit);
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Volume must be a number</p></div>');		
     }
+
+var notification = $("#notification").kendoNotification({
+	position: {
+		pinned: true,
+		bottom: 90,
+		right: 30
+	},
+	autoHideAfter: 5000,
+	stacking: "up",
+	templates: [{
+		type: "error",
+		template: $("#errorTemplate").html()
+	}]
+	}).data("kendoNotification");	
+	
+	notification.show({ title: "Error",	message: ""}, "error");
     navigator.notification.vibrate(300);
 })
 
@@ -285,8 +311,13 @@ var ConversionModule = (function() {
 
 		SpeedConvertion.prototype.convert = function() {
 			var currentUnit = $("#originalSpeedUnit").val();
+			debugger;
 			var currentValue = parseFloat($("#speedValue").val());
 			var newUnit = $("#convertedSpeedUnit").val();
+				if (currentValue<0) { 
+					alert("Negative"); 
+					return;
+				}
 			var temporaryValue = currentUnitToMetersPerSecond(currentUnit, currentValue);
 			var precision = loadSettings().precision;
 

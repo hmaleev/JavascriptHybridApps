@@ -1,0 +1,63 @@
+Node version: v0.10.26
+
+Cordova version: 3.7.0
+
+Config.xml file: 
+
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.hmaleev.convertor" version="1.6.0"  android-versionCode="10060" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Converter</name>
+    <description>
+       A simple application to convert between different units
+    </description>
+    <preference name="permissions" value="none" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <author email="hmaleev@gmail.com" href="hmaleev@gmail.com">
+      Hristo Maleev
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
+
+
+Plugins: 
+
+com.flurry.sdk-android,com.google.admobsdk-googleplay,com.rjfun.cordova.plugin.flurry,org.apache.cordova.network-information,org.apache.cordova.splashscreen,org.apache.cordova.vibration
+
+Android platform:
+
+Available Android targets:
+----------
+id: 1 or "android-10"
+     Name: Android 2.3.3
+     Type: Platform
+     API level: 10
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WVGA800 (default), WVGA854
+ Tag/ABIs : default/armeabi, default/x86
+----------
+id: 2 or "android-15"
+     Name: Android 4.0.3
+     Type: Platform
+     API level: 15
+     Revision: 3
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800
+ Tag/ABIs : default/x86
+----------
+id: 3 or "android-19"
+     Name: Android 4.4.2
+     Type: Platform
+     API level: 19
+     Revision: 3
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : default/x86
+----------
+id: 4 or "android-20"
+     Name: Android 4.4W
+     Type: Platform
+     API level: 20
+     Revision: 1
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+
