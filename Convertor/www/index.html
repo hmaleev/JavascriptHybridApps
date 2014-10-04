@@ -99,9 +99,9 @@ document.getElementById('sizeinfo').innerHTML = msg;
 	
 	 <div id="example">
             <span id="notification" style="display:none;"></span>
-            <script id="errorTemplate" type="text/x-kendo-template">
+            <div id="errorTemplate">
                
-            </script>
+            </div>
             <script>
                 $(document).ready(function() {
                     $("#hideAllNotifications").click(function(){
@@ -114,10 +114,9 @@ document.getElementById('sizeinfo').innerHTML = msg;
             </script>
 
             <style>
-
                 .k-notification {
                     border: 0;
-					margin:10px;
+					
                 }
 
                 /* Error template */
@@ -127,12 +126,11 @@ document.getElementById('sizeinfo').innerHTML = msg;
 				
                 }
                 .wrong-pass {
-                    width: 350px;
                     height: 100px;
                 }
                 .wrong-pass h3 {
                     font-size: 2em;
-                    padding: 0;
+                   padding: 0;
                 }
 				.errorMsg {
 					font-size: 1.5em;
@@ -471,7 +469,7 @@ document.getElementById('sizeinfo').innerHTML = msg;
             });
 		}
         if (theme === null) {
-            var app = new kendo.mobile.Application(document.body);
+            var app = new kendo.mobile.Application($(document.body));
         }
     </script>
 </body>

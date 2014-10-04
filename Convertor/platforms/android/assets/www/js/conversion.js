@@ -35,13 +35,24 @@ convertBtn.click(function () {
     var massDrawer = $("#drawer-mass");
     var areaDrawer = $("#drawer-area");
     var volumeDrawer = $("#drawer-volume");
+	var isValidValue;
 
+	
     if (temperatureDrawer.is(':visible')) {
         var temperatureConversion = new ConversionModule.TemperatureConvertion();
         var newUnit = $("#convertedTemperatureUnit").val();
-        $("#temperatureResult").html("RESULT: " + temperatureConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Temperature must be a number</p></div>');
-		
+		var result = temperatureConversion.convert();
+		if (result !== undefined) {
+			$("#temperatureResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue = true;
+		} 
+		else {
+		$("#temperatureResult").html("RESULT:");
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Temperature must be a number</p></div>').width(1000);
+		debugger;
+		$(".wrong-pass").css("width",screen.width);
+		isValidValue = false;
+       }
     }
     if (speedDrawer.is(':visible')) {
         var speedConversion = new ConversionModule.SpeedConvertion();
@@ -81,16 +92,17 @@ convertBtn.click(function () {
         var volumeConversion = new ConversionModule.VolumeConvertion();
         var newUnit = $("#convertedVolumeUnit").val();
         $("#volumeResult").html("RESULT: " + volumeConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Volume must be a number</p></div>');		
+		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Volume must be a number</p></div>');
+		
     }
 
-var notification = $("#notification").kendoNotification({
+		var notification = $("#notification").kendoNotification({
 	position: {
 		pinned: true,
-		bottom: 90,
-		right: 30
+		bottom: screen.height*0.2,
+		left: 0
 	},
-	autoHideAfter: 5000,
+	autoHideAfter: 3000,
 	stacking: "up",
 	templates: [{
 		type: "error",
@@ -98,7 +110,15 @@ var notification = $("#notification").kendoNotification({
 	}]
 	}).data("kendoNotification");	
 	
-	notification.show({ title: "Error",	message: ""}, "error");
+	if (isValidValue ===false) {
+	
+		notification.show({ title: "Error",	message: ""}, "error");
+		
+	}
+	else { 
+		notification.hide();
+	}
+	
     navigator.notification.vibrate(300);
 })
 
@@ -180,6 +200,18 @@ var ConversionModule = (function() {
     }());
 
 	//----------TEMPERATURE CONVERSION----------
+	
+	function validateTemperature (value) {
+	
+		var temperature = parseFloat(value);
+		if (isNaN(temperature)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
 	function currentUnitToCelsius(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -208,11 +240,18 @@ var ConversionModule = (function() {
 	        var currentUnit = $("#originalTemperatureUnit").val();
 	        var currentValue = parseFloat($("#temperatureValue").val());
 	        var newUnit = $("#convertedTemperatureUnit").val();
-	        var temporaryValue = currentUnitToCelsius(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-	        var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
+
+			var isValid = validateTemperature(currentValue);
+			if (isValid ===true) {
+				var temporaryValue = currentUnitToCelsius(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			}
+			else {
+				return undefined;
+			}
 	    }
 	    return TemperatureConvertion;
 
