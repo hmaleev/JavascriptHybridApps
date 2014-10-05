@@ -36,6 +36,7 @@ convertBtn.click(function () {
     var areaDrawer = $("#drawer-area");
     var volumeDrawer = $("#drawer-volume");
 	var isValidValue;
+	var errorTemplate =$("#errorTemplate")
 
 	
     if (temperatureDrawer.is(':visible')) {
@@ -47,53 +48,97 @@ convertBtn.click(function () {
 			isValidValue = true;
 		} 
 		else {
-		$("#temperatureResult").html("RESULT:");
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Temperature must be a number</p></div>').width(1000);
-		debugger;
-		$(".wrong-pass").css("width",screen.width);
-		isValidValue = false;
+			$("#temperatureResult").html("RESULT:");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Temperature must be a number</p></div>').width(1000);
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;
        }
     }
     if (speedDrawer.is(':visible')) {
         var speedConversion = new ConversionModule.SpeedConvertion();
         var newUnit = $("#convertedSpeedUnit").val();
-		if (speedConversion.convert() !== undefined) {
-        $("#speedResult").html("RESULT: " + speedConversion.convert() + " " + newUnit);
+		var result = speedConversion.convert();
+		if (result !== undefined) {
+			$("#speedResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue = true;
 		} else {
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Speed must be a number</p></div>');
+			$("#speedResult").html("RESULT:");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Speed must be a positive number</p></div>');
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;
 		}
     }
     if (distanceDrawer.is(':visible')) {
        
         var distanceConversion = new ConversionModule.DistanceConvertion();
         var newUnit = $("#convertedDistanceUnit").val();
-        $("#distanceResult").html("RESULT: " + distanceConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Distance must be a number</p></div>');		
+		var result = distanceConversion.convert();
+		if (result !== undefined) {
+			$("#distanceResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue = true;
+		} 
+		else {
+			$("#distanceResult").html("RESULT:");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Distance must be a positive number</p></div>').width(1000);
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;
+       }
     }
     if (powerDrawer.is(':visible')) {
         var powerConversion = new ConversionModule.PowerConvertion();
         var newUnit = $("#convertedPowerUnit").val();
-        $("#powerResult").html("RESULT: " + powerConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Power must be a number</p></div>');		
+		var result = powerConversion.convert();
+		if (result !== undefined) {
+			$("#powerResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue = true;
+		} else {
+			$("#powerResult").html("RESULT: ");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Power must be a  number</p></div>').width(1000);
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;			
+		}
     }
     if (massDrawer.is(':visible')) {
         var massConversion = new ConversionModule.MassConvertion();
         var newUnit = $("#convertedMassUnit").val();
-        $("#massResult").html("RESULT: " + massConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Mass must be a number</p></div>');		
+		var result = massConversion.convert();
+		if (result !== undefined) {
+			$("#massResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue =true;
+		} else {
+			$("#massResult").html("RESULT: ");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Mass must be a positive number</p></div>').width(1000);
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;				
+		}
     }
     if (areaDrawer.is(':visible')) {
         var areaConversion = new ConversionModule.AreaConvertion();
         var newUnit = $("#convertedAreaUnit").val();
-        $("#areaResult").html("RESULT: " + areaConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Area must be a number</p></div>');		
+		var result = areaConversion.convert();
+		if (result !== undefined) {
+			$("#areaResult").html("RESULT: " + areaConversion.convert() + " " + newUnit);
+			isValidValue = true;
+		} else {
+			$("#areaResult").html("RESULT: ");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Area must be a positive number</p></div>');		
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;
+		}
     }
     if (volumeDrawer.is(':visible')) {
         var volumeConversion = new ConversionModule.VolumeConvertion();
         var newUnit = $("#convertedVolumeUnit").val();
-        $("#volumeResult").html("RESULT: " + volumeConversion.convert() + " " + newUnit);
-		$("#errorTemplate").html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Volume must be a number</p></div>');
-		
+		var result = volumeConversion.convert();
+		if (result !== undefined) {
+			$("#volumeResult").html("RESULT: " + result + " " + newUnit);
+			isValidValue =true;
+		} else {
+			$("#volumeResult").html("RESULT: ");
+			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Volume must be a positive number</p></div>').width(1000);
+			$(".wrong-pass").css("width",screen.width);
+			isValidValue = false;
+		}
     }
 
 		var notification = $("#notification").kendoNotification({
@@ -210,8 +255,7 @@ var ConversionModule = (function() {
 		else {
 			return true;
 		}
-	}
-	
+	}	
 	function currentUnitToCelsius(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -258,6 +302,14 @@ var ConversionModule = (function() {
 	}());
 
     //----------DISTANCE CONVERSION----------
+	function validateDistance(value){
+		var distance = parseFloat(value);
+		if (isNaN(distance) || distance <0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToMeter(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -310,19 +362,32 @@ var ConversionModule = (function() {
 	    DistanceConvertion.prototype.convert = function () {
 	        var currentUnit = $("#originalDistanceUnit").val();
 	        var currentValue = parseFloat($("#distanceValue").val());
+			var isValid = validateDistance(currentValue);
+			if (isValid  ===true) {
 	        var newUnit = $("#convertedDistanceUnit").val();
-	        var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-
-	        var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
+				var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			}
+			else {
+				return undefined;
+			}
 	    }
 	    return DistanceConvertion;
 
 	}());
 
 	//----------SPEED CONVERSION----------
+	function validateSpeed(value) {
+		var speed = parseFloat(value);
+		if (isNaN(speed)||speed<0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToMetersPerSecond(unit, currentValue) {
 		//currentUnitValue = parseFloat(currentUnitValue);
 		switch (unit) {
@@ -352,22 +417,30 @@ var ConversionModule = (function() {
 			var currentUnit = $("#originalSpeedUnit").val();
 			debugger;
 			var currentValue = parseFloat($("#speedValue").val());
-			var newUnit = $("#convertedSpeedUnit").val();
-				if (currentValue<0) { 
-					alert("Negative"); 
-					return;
-				}
-			var temporaryValue = currentUnitToMetersPerSecond(currentUnit, currentValue);
-			var precision = loadSettings().precision;
-
-			var finalValue = metersPerSecondToNewSpeedUnit(newUnit, temporaryValue).toFixed(precision);
-			finalValue = returnLocalizedResult(finalValue);
-			return finalValue;
+			var isValid = validateSpeed(currentValue);
+			if (isValid) {
+				var newUnit = $("#convertedSpeedUnit").val();
+				var temporaryValue = currentUnitToMetersPerSecond(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = metersPerSecondToNewSpeedUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			} else {
+				return undefined;
+			}
 		}
 		return SpeedConvertion;
 	}());
 
     //----------POWER CONVERSION----------
+	function validatePower(value) {
+		var power = parseFloat(value);
+		if (isNaN(power)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToWatts(unit, currentValue) {
 	    //currentUnitValue = parseFloat(currentUnitValue);
 	    switch (unit) {
@@ -403,18 +476,30 @@ var ConversionModule = (function() {
 	    PowerConvertion.prototype.convert = function () {
 	        var currentUnit = $("#originalPowerUnit").val();
 	        var currentValue = parseFloat($("#powerValue").val());
-	        var newUnit = $("#convertedPowerUnit").val();
-	        var temporaryValue = currentUnitToWatts(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-
-	        var finalValue = wattsToNewPowerUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
+			var isValid = validatePower(currentValue);
+			if (isValid  ===true) {
+				var newUnit = $("#convertedPowerUnit").val();
+				var temporaryValue = currentUnitToWatts(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = wattsToNewPowerUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			} else {
+				return undefined;
+			}
 	    }
 	    return PowerConvertion;
 	}());
 
     //----------MASS CONVERSION----------
+	function validateMass(value) {
+		var mass = parseFloat(value);
+		if (isNaN(mass)||mass<0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToKilograms(unit, currentValue) {
 	    //currentUnitValue = parseFloat(currentUnitValue);
 	    switch (unit) {
@@ -466,18 +551,30 @@ var ConversionModule = (function() {
 	    MassConvertion.prototype.convert = function () {
 	        var currentUnit = $("#originalMassUnit").val();
 	        var currentValue = parseFloat($("#massValue").val());
-	        var newUnit = $("#convertedMassUnit").val();
-	        var temporaryValue = currentUnitToKilograms(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-
-	        var finalValue = kilogramsToNewMassUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
-	    }
+			var isValid = validateMass(currentValue);
+			if (isValid  ===true) {
+				var newUnit = $("#convertedMassUnit").val();
+				var temporaryValue = currentUnitToKilograms(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = kilogramsToNewMassUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			} else {
+				return undefined;
+			}
+	    }	
 	    return MassConvertion;
 	}());
 
     //----------AREA CONVERSION----------
+	function validateArea(value) {
+		var area = parseFloat(value);
+		if (isNaN(area)||area<0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToSquareMeters(unit, currentValue) {
 	    switch (unit) {
 	        case "square metre (m²)":
@@ -533,17 +630,29 @@ var ConversionModule = (function() {
 	        var currentUnit = $("#originalAreaUnit").val();
 	        var currentValue = parseFloat($("#areaValue").val());
 	        var newUnit = $("#convertedAreaUnit").val();
-	        var temporaryValue = currentUnitToSquareMeters(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-
-	        var finalValue = squareMetersToNewAreaUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
+			var isValid = validateArea(currentValue);
+			if (isValid  ===true) {
+				var temporaryValue = currentUnitToSquareMeters(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = squareMetersToNewAreaUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			} else {
+				return undefined;
+			}
 	    }
 	    return AreaConvertion;
 	}());
 
     //----------VOLUME CONVERSION----------
+	function validateVolume(value) {
+		var volume = parseFloat(value);
+		if (isNaN(volume)||volume<0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	function currentUnitToLiters(unit, currentValue) {
 	    //currentUnitValue = parseFloat(currentUnitValue);
 	    switch (unit) {
@@ -615,13 +724,17 @@ var ConversionModule = (function() {
 	    VolumeConvertion.prototype.convert = function () {
 	        var currentUnit = $("#originalVolumeUnit").val();
 	        var currentValue = parseFloat($("#volumeValue").val());
-	        var newUnit = $("#convertedVolumeUnit").val();
-	        var temporaryValue = currentUnitToLiters(currentUnit, currentValue);
-	        var precision = loadSettings().precision;
-
-	        var finalValue = litersToNewVolumeUnit(newUnit, temporaryValue).toFixed(precision);
-	        finalValue = returnLocalizedResult(finalValue);
-	        return finalValue;
+			var isValid = validateVolume(currentValue);
+			if (isValid  ===true) {
+				var newUnit = $("#convertedVolumeUnit").val();
+				var temporaryValue = currentUnitToLiters(currentUnit, currentValue);
+				var precision = loadSettings().precision;
+				var finalValue = litersToNewVolumeUnit(newUnit, temporaryValue).toFixed(precision);
+				finalValue = returnLocalizedResult(finalValue);
+				return finalValue;
+			} else {
+				return undefined;
+			}
 	    }
 	    return VolumeConvertion;
 	}());
