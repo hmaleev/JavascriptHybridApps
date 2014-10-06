@@ -14,137 +14,116 @@
     <script src="js/jquery.min.js"></script>
 	<script src="js/kendo.all.min.js"></script> 
 </head>
- <body onload="onLoad()" onresize="onResize()">
-  <div id="errorTemplate">
-            </div>
-<script>
+<body onload="onLoad()" onresize="onResize()">
+	<div id="errorTemplate"></div>
+	<script>
 
-var flurry_android_key = 'R922J372Z4FF8HHK32Z5';
-var adId = flurry_android_key;
-function onLoad() {
-document.addEventListener("deviceready", onDeviceReady, false);
-createAd();
-showAd(true);
-// more callback to handle Ad events
-document.addEventListener('onReceiveAd', function(){
-});
-document.addEventListener('onFailedToReceiveAd', function(data){
-});
-document.addEventListener('onPresentAd', function(){
-});
-document.addEventListener('onDismissAd', function(){
-});
-document.addEventListener('onLeaveToAd', function(){
-});
-}
-function createAd() {
-if ( window.plugins && window.plugins.Flurry ) {
-var am = window.plugins.Flurry;
-am.createBannerView(
-{
-'publisherId': adId,
-'adSize': am.AD_SIZE.BANNER,
-'bannerAtTop': false
-}, function() {
-am.requestAd( { 'isTesting':false }, function() {
-am.showAd( true, function(){ onResize(); },function(){} );
-}, function() {
-alert('failed to request ad');
-})
-}, function(){
-alert( "failed to create ad view" );
-});
-} else {
-alert('Flurry plugin not available/ready.');
-}
-}
-function removeAd() {
-if ( window.plugins && window.plugins.Flurry ) {
-var am = window.plugins.Flurry;
-am.destroyBannerView({},function(){onResize();},function(){});
-}
-}
-function onDeviceReady() {
-//createAd();
-}
-function showAd( bshow ) {
-if ( window.plugins && window.plugins.Flurry ) {
-var am = window.plugins.Flurry;
-am.showAd( bshow, function(){onResize();}, function(){ alert('please create ad first'); } );
-} else {
-alert('Flurry plugin not available/ready.');
-}
-}
-function showInterstitialAd() {
-var am = window.plugins.Flurry;
-am.createInterstitialView(
-{
-'publisherId': adId,
-},
-function() {
-am.requestInterstitialAd( { 'isTesting':true }, function() {
-//am.showAd( true ); // it's for banner ad only
-}, function() {
-alert('failed to request ad');
-});
-},
-function() {
-alert("Interstitial failed");
-}
-);
-}
-function onResize() {
-var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
-document.getElementById('sizeinfo').innerHTML = msg;
-}
-</script>
+		var flurry_android_key = 'R922J372Z4FF8HHK32Z5';
+		var adId = flurry_android_key;
+		function onLoad() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+			createAd();
+			showAd(true);
+		// more callback to handle Ad events
+		document.addEventListener('onReceiveAd', function(){
+		});
+		document.addEventListener('onFailedToReceiveAd', function(data){
+		});
+		document.addEventListener('onPresentAd', function(){
+		});
+		document.addEventListener('onDismissAd', function(){
+		});
+		document.addEventListener('onLeaveToAd', function(){
+		});
+		}
+		function createAd() {
+			if ( window.plugins && window.plugins.Flurry ) {
+				var am = window.plugins.Flurry;
+				am.createBannerView({
+					'publisherId': adId,
+					'adSize': am.AD_SIZE.BANNER,
+					'bannerAtTop': false
+				}, function() {
+				am.requestAd( { 'isTesting':false }, function() {
+					am.showAd( true, function(){ onResize(); },function(){} );
+				}, function() {
+					alert('failed to request ad');
+					})
+				}, function(){
+					alert( "failed to create ad view" );
+					});
+			} else {
+				alert('Flurry plugin not available/ready.');
+			}
+		}
+		function removeAd() {
+			if ( window.plugins && window.plugins.Flurry ) {
+				var am = window.plugins.Flurry;
+				am.destroyBannerView({},function(){onResize();},function(){});
+			}
+		}
+		function onDeviceReady() {
+			createAd();
+		}
+		function showAd( bshow ) {
+			if ( window.plugins && window.plugins.Flurry ) {
+				var am = window.plugins.Flurry;
+				am.showAd( bshow, function(){onResize();}, function(){ alert('please create ad first'); } );
+			} else {
+				alert('Flurry plugin not available/ready.');
+			}
+		}
+		function showInterstitialAd() {
+			var am = window.plugins.Flurry;
+			am.createInterstitialView({
+				'publisherId': adId,
+			},
+			function() {
+				am.requestInterstitialAd( { 'isTesting':true }, function() {
+					//am.showAd( true ); // it's for banner ad only
+				}, function() {
+					alert('failed to request ad');
+				});
+			},
+			function() {
+				alert("Interstitial failed");
+				});
+		}
+		function onResize() {
+			var msg = 'web view: ' + window.innerWidth + ' x ' + window.innerHeight;
+			document.getElementById('sizeinfo').innerHTML = msg;
+		}
+	</script>
+	<style>
+		.k-notification {
+			border: 0;
+			
+		}
+
+		/* Error template */
+		.k-notification-error.k-group {
+			background: rgba(100%,0%,0%,.7);
+			color: #ffffff;
+		
+		}
+		.wrong-pass {
+			height: 100px;
+		}
+		.wrong-pass h3 {
+			font-size: 2em;
+		   padding: 0;
+		}
+		.errorMsg {
+			font-size: 1.5em;
+			margin: -30px;
+		}
+		.wrong-pass img {
+			float: left;
+			margin: 30px 15px 30px 10px;
+		}
+	</style>
+	<span id="notification" style="display:none;"></span>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="Distance">
-	
-	 <div id="example">
-	 
-            <span id="notification" style="display:none;"></span>
-           
-            <script>
-                $(document).ready(function() {
-                    $("#hideAllNotifications").click(function(){
-                        notification.hide();
-                    });
-
-                    $(document).one("kendo:pageUnload", function(){ if (notification) { notification.hide(); } });
-
-                });
-            </script>
-
-            <style>
-                .k-notification {
-                    border: 0;
-					
-                }
-
-                /* Error template */
-                .k-notification-error.k-group {
-                    background: rgba(100%,0%,0%,.7);
-                    color: #ffffff;
-				
-                }
-                .wrong-pass {
-                    height: 100px;
-                }
-                .wrong-pass h3 {
-                    font-size: 2em;
-                   padding: 0;
-                }
-				.errorMsg {
-					font-size: 1.5em;
-                    margin: -30px;
-				}
-                .wrong-pass img {
-                    float: left;
-                    margin: 30px 15px 30px 10px;
-                }
-            </style>
-        </div>
-	
         <p> Convert </p>
         <input type="number" id="distanceValue" placeholder="Enter distance">
         <select id="originalDistanceUnit">	
@@ -171,7 +150,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
 			 <option>Nautical Miles</option>
         </select>
         <p id="distanceResult"> Result: </p>
-        <!--<button id="distanceConversionBtn" class="convertBtn">Convert</button>-->
 		<div class="kendoBtn">
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
@@ -197,7 +175,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
                 <option>kilometre per minute (km/m)</option>-->
         </select>
         <p id="speedResult"> Result: </p>
-        <!--<button id="speedConversionBtn" class="convertBtn">Convert</button>-->
         <div class="kendoBtn">
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
@@ -217,7 +194,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
             <option>Fahrenheit</option>
         </select>
         <p id="temperatureResult"> Result: </p>
-        <!--<button id="temperatureConversionBtn" class="convertBtn">Convert</button>-->
         <div class="kendoBtn">
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
@@ -241,7 +217,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
             <option>horserpower (metric)</option>
         </select>
         <p id="powerResult"> Result: </p>
-        <!--<button class="convertBtn">Convert</button>-->
         <div class="kendoBtn">
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
@@ -273,7 +248,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
             <option>ounce (oz)</option>
         </select>
         <p id="massResult"> Result: </p>
-        <!--<button class="convertBtn">Convert</button>-->
         <div class="kendoBtn">
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
@@ -376,7 +350,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
             <option>Light</option>
 			<option>ios</option>
 			<option>ios7</option>
-			<option>wp</option>
         </select>
 		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
         <!-- <button id="saveSettingsBtn">Save changes</button> -->
@@ -463,11 +436,6 @@ document.getElementById('sizeinfo').innerHTML = msg;
 		if (theme === "ios7") {
 		  var app = new kendo.mobile.Application($(document.body), {
                 skin: "ios7"
-            });
-		}
-		if (theme === "wp") {
-		  var app = new kendo.mobile.Application($(document.body), {
-                skin: "wp"
             });
 		}
         if (theme === null) {
