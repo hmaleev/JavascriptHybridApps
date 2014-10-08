@@ -252,7 +252,7 @@ var ConversionModule = (function() {
 	function validateTemperature (value) {
 	
 		var temperature = parseFloat(value);
-		if (isNaN(temperature)) {
+		if (isNaN(value) || isNaN(temperature)) {
 			return false;
 		}
 		else {
@@ -290,7 +290,7 @@ var ConversionModule = (function() {
 
 			var isValid = validateTemperature(options.currentValue);
 			if (isValid ===true) {
-				var temporaryValue = currentUnitToCelsius(options.currentUnit, options.currentValue);
+				var temporaryValue = currentUnitToCelsius(options.currentUnit, parseFloat(options.currentValue));
 				var precision = loadSettings().precision;
 				var finalValue = celsiusToNewTemperatureUnit(options.newUnit, temporaryValue).toFixed(precision);
 				finalValue = returnLocalizedResult(finalValue);
