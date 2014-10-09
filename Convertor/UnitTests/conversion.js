@@ -76,8 +76,13 @@ convertBtn.click(function () {
     if (distanceDrawer.is(':visible')) {
        
         var distanceConversion = new ConversionModule.DistanceConvertion();
-        var newUnit = $("#convertedDistanceUnit").val();
-		var result = distanceConversion.convert();
+        
+        var options = {
+        	newUnit : $("#convertedDistanceUnit").val(),
+        	currentUnit : $("#originalDistanceUnit").val(),
+	        currentValue : parseFloat($("#distanceValue").val())
+        }
+		var result = distanceConversion.convert(options);
 		if (result !== undefined) {
 			$("#distanceResult").html("RESULT: " + result + " " + newUnit);
 			isValidValue = true;
@@ -129,7 +134,7 @@ convertBtn.click(function () {
 			errorTemplate.html('<div class="wrong-pass"><img src="img/error-icon.png" /><h3>Error</h3><p class="errorMsg">Area must be a positive number</p></div>');		
 			$(".wrong-pass").css("width",screen.width);
 			isValidValue = false;
-		}
+		}z
     }
     if (volumeDrawer.is(':visible')) {
         var volumeConversion = new ConversionModule.VolumeConvertion();
@@ -307,7 +312,7 @@ var ConversionModule = (function() {
     //----------DISTANCE CONVERSION----------
 	function validateDistance(value){
 		var distance = parseFloat(value);
-		if (isNaN(distance) || distance <0) {
+		if (isNaN(distance) || distance <0 || isNaN(value)) {
 			return false;
 		} else {
 			return true;
@@ -362,15 +367,14 @@ var ConversionModule = (function() {
 	var DistanceConvertion = (function () {
 	    var DistanceConvertion = function () { };
 
-	    DistanceConvertion.prototype.convert = function () {
-	        var currentUnit = $("#originalDistanceUnit").val();
-	        var currentValue = parseFloat($("#distanceValue").val());
-			var isValid = validateDistance(currentValue);
+	    DistanceConvertion.prototype.convert = function (options) {
+	        //var currentUnit = $("#originalDistanceUnit").val();
+	        //var currentValue = parseFloat($("#distanceValue").val());
+			var isValid = validateDistance(options.currentValue);
 			if (isValid  ===true) {
-	        var newUnit = $("#convertedDistanceUnit").val();
-				var temporaryValue = currentUnitToMeter(currentUnit, currentValue);
+				var temporaryValue = currentUnitToMeter(options.currentUnit, options.currentValue);
 				var precision = loadSettings().precision;
-				var finalValue = metersToNewDistanceUnit(newUnit, temporaryValue).toFixed(precision);
+				var finalValue = metersToNewDistanceUnit(options.newUnit, temporaryValue).toFixed(precision);
 				finalValue = returnLocalizedResult(finalValue);
 				return finalValue;
 			}
