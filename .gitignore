@@ -1,3 +1,6 @@
 */bin
 */obj
 *.user-settings.xml
+Convertor/UnitTests/qunit-1.15.js
+Convertor/UnitTests/conversion.js
+Convertor/UnitTests/conversion.js
