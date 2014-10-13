@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="com.flurry.sdk-android"
+	version="4.0.0">
+      
+    <name>Flurry SDK for Android</name>
+	<description>add Flurry SDK for Android to cordova project, as dependency of other plugins</description>
+	<keywords>ad,ads,sdk,flurry,admob</keywords>
+
+	<engines>
+	    <engine name="cordova" version=">=3.0" />
+	</engines>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+	<activity android:name="com.flurry.android.FlurryFullscreenTakeoverActivity"
+		      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" ></activity>
+          </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+          </config-file>
+          
+        <source-file src="src/android/FlurryAds-4.0.0.jar" target-dir="libs" />
+        <source-file src="src/android/FlurryAnalytics-4.0.0.jar" target-dir="libs" />
+     </platform>
+     
+</plugin>

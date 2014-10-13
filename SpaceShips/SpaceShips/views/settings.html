@@ -1,0 +1,204 @@
+﻿<div data-show="show" data-role="view" data-title="Settings" id="settings-view" data-id="settings-view" onload="Test()">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="right" data-role="button" class="nav-button" href="#index">Home page</a>
+        </div>
+    </header>
+    <ul data-role="listview" data-style="inset" data-type="group">
+        <li>Gameplay
+           
+            <ul>
+                <li>Automatic shooting
+                    <input id="AutomaticShootingSwitch" data-role="switch" data-change="onChange" />
+                </li>
+                 <li>
+                    <label>
+                        Player name: 
+                        <input type="text" id="playerName" />
+                    </label>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <ul>
+                <li>High scores
+                    <div class="button" data-role="button" id="DeleteHighScoresBtn">Delete all local high scores</div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+
+        function show(e) {
+
+            var pernamentStorage = window.localStorage;
+            var playerName = document.getElementById("playerName");
+            var name = pernamentStorage.getItem("playerName");
+
+            if (name !== null) {
+                playerName.value = name;
+            }
+            else {
+                playerName.value = "Player 1";
+            }
+
+            playerName.oninput = function () {
+                console.log("updated");
+                pernamentStorage.setItem("playerName", playerName.value);
+            }
+        }
+       // var isChecked;
+       
+        onChange()
+        function onChange(e) {
+            var isChecked = window.localStorage.getItem("checkedAutomaticShooting");
+            var automatiShootingSwitch = document.getElementById("AutomaticShootingSwitch");
+            console.log("-----");
+            console.log("First Check:");
+            console.log(isChecked);
+            console.log("-----");
+
+            var pernamentStorage = window.localStorage;
+            var automatiShootingSwitch = document.getElementById("AutomaticShootingSwitch");
+
+            if (isChecked == null || automatiShootingSwitch.checked==true) {
+                automatiShootingSwitch.setAttribute("checked", "checked");
+                pernamentStorage.setItem("automaticShooting", true);
+                pernamentStorage.setItem("checkedAutomaticShooting", true);
+
+                //isChecked = window.localStorage.getItem("checkedAutomaticShooting");
+                //console.log("-----");
+                //console.log("Checked:");
+                //console.log(isChecked);
+                //console.log("-----");
+            }
+            else {
+                automatiShootingSwitch.removeAttribute("checked");
+                pernamentStorage.setItem("automaticShooting", false);
+                pernamentStorage.setItem("checkedAutomaticShooting", false);
+                
+                //isChecked = window.localStorage.getItem("checkedAutomaticShooting");
+                //console.log("-----");
+                //console.log("Checked:");
+                //console.log(isChecked);
+                //console.log("-----");
+            }
+
+        }
+
+        var pernamentStorage = window.localStorage;
+        var deleteHighScoresBtn = document.getElementById("DeleteHighScoresBtn");
+
+        deleteHighScoresBtn.addEventListener("click", function () {
+            console.log("Clicked BTN");
+            pernamentStorage.removeItem('score');
+        });
+    </script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div data-show="show" data-role="view" data-title="Settings" id="settings-view" data-id="settings-view">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-align="right" data-role="button" class="nav-button" href="#index">Home page</a>
+        </div>
+    </header>
+    <ul data-role="listview" data-style="inset" data-type="group">
+        <li>Gameplay
+           
+            <ul>
+                <li>Automatic shooting
+                    <input id="AutomaticShootingSwitch" data-role="switch" data-change="onChange" />
+                </li>
+                 <li>
+                    <label>
+                        Player name: 
+                        <input type="text" id="playerName" value="Player1" />
+                    </label>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <ul>
+                <li>High scores
+                    <div class="button" data-role="button" id="DeleteHighScoresBtn">Delete all local high scores</div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+
+        var pernamentStorage = window.localStorage;
+        var automatiShootingSwitch = document.getElementById("AutomaticShootingSwitch");
+        var deleteHighScoresBtn = document.getElementById("DeleteHighScoresBtn");
+       
+        var isAutomaticShootingEnabled = automatiShootingSwitch.checked;
+        if (isAutomaticShootingEnabled == true) {
+            console.log("Checked");
+            pernamentStorage.setItem("automaticShooting", true);
+        }
+        else {
+            console.log(" Not Checked");
+            pernamentStorage.setItem("automaticShooting", false);
+        }
+
+        deleteHighScoresBtn.onclick = function () {
+            console.log("Btn Clicked");
+            pernamentStorage.removeItem('score');
+        }
+        var PlayerName = document.getElementById("playerName");
+        var name = pernamentStorage.getItem("playerName");
+        if (name != null ) {
+          
+            PlayerName.value = name;
+        }
+        else {
+            PlayerName.value = "Player1";
+        }
+
+        playerName.oninput = function () {
+            console.log("updated");
+            pernamentStorage.setItem("playerName", playerName.value);
+        }
+
+</script>
+</div>-->
