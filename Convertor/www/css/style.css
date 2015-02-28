@@ -1,11 +1,31 @@
+.km-root .k-toolbar{
 
-select, input, .k-input {
-	display: block;
+text-align:center !important;
+padding-right:10% !important;
+}
+.title {
+font-size: 1.5em ;
+}
+.k-select{
+display:none;
+}
+select, input  {
+	display: inline-block;
 	width: 99%;
 	margin-top: 1%;
 	font-size: 1.5em;
-
+	
 }
+.k-item {
+font-size:1.3em;
+}
+.k-input{
+display: inline-block;
+	width: 99%;
+	margin-top: 1%;
+	font-size: 1.5em;
+	}
+
 p {
 	font-size: 1.2em;
 	margin: 2% 0 1% 0;

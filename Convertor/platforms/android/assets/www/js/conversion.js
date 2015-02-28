@@ -41,8 +41,13 @@ convertBtn.click(function () {
 	
     if (temperatureDrawer.is(':visible')) {
         var temperatureConversion = new ConversionModule.TemperatureConvertion();
-        var newUnit = $("#convertedTemperatureUnit").val();
-		var result = temperatureConversion.convert();
+        var options = { 
+	        newUnit: $("#convertedTemperatureUnit").val(),
+	        currentUnit: $("#originalTemperatureUnit").val(),
+		    currentValue: parseFloat($("#temperatureValue").val())
+		}
+	     
+		var result = temperatureConversion.convert(options);
 		if (result !== undefined) {
 			$("#temperatureResult").html("RESULT: " + result + " " + newUnit);
 			isValidValue = true;
@@ -141,24 +146,22 @@ convertBtn.click(function () {
 		}
     }
 
-		var notification = $("#notification").kendoNotification({
-	position: {
-		pinned: true,
-		bottom: screen.height*0.2,
-		left: 0
-	},
-	autoHideAfter: 3000,
-	stacking: "up",
-	templates: [{
-		type: "error",
-		template: $("#errorTemplate").html()
-	}]
+	var notification = $("#notification").kendoNotification({
+		position: {
+			pinned: true,
+			bottom: screen.height*0.2,
+			left: 0
+		},
+		autoHideAfter: 3000,
+		stacking: "up",
+		templates: [{
+			type: "error",
+			template: $("#errorTemplate").html()
+		}]
 	}).data("kendoNotification");	
 	
 	if (isValidValue ===false) {
-	
-		notification.show({ title: "Error",	message: ""}, "error");
-		
+		notification.show({ title: "Error",	message: ""}, "error");	
 	}
 	else { 
 		notification.hide();
@@ -280,16 +283,16 @@ var ConversionModule = (function() {
 	var TemperatureConvertion = (function () {
 	    var TemperatureConvertion = function () { };
 
-	    TemperatureConvertion.prototype.convert = function () {
-	        var currentUnit = $("#originalTemperatureUnit").val();
-	        var currentValue = parseFloat($("#temperatureValue").val());
-	        var newUnit = $("#convertedTemperatureUnit").val();
+	    TemperatureConvertion.prototype.convert = function (options) {
+	        //var currentUnit = $("#originalTemperatureUnit").val();
+	        //var currentValue = parseFloat($("#temperatureValue").val());
+	        //var newUnit = $("#convertedTemperatureUnit").val();
 
-			var isValid = validateTemperature(currentValue);
+			var isValid = validateTemperature(options.currentValue);
 			if (isValid ===true) {
-				var temporaryValue = currentUnitToCelsius(currentUnit, currentValue);
+				var temporaryValue = currentUnitToCelsius(options.currentUnit, options.currentValue);
 				var precision = loadSettings().precision;
-				var finalValue = celsiusToNewTemperatureUnit(newUnit, temporaryValue).toFixed(precision);
+				var finalValue = celsiusToNewTemperatureUnit(options.newUnit, temporaryValue).toFixed(precision);
 				finalValue = returnLocalizedResult(finalValue);
 				return finalValue;
 			}

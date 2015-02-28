@@ -47,7 +47,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
                             "count": 1
                         },
                         {
@@ -55,7 +55,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -73,13 +73,13 @@
         "com.rjfun.cordova.plugin.flurry": {
             "PACKAGE_NAME": "com.hmaleev.convertor"
         },
-        "org.apache.cordova.network-information": {
+        "org.apache.cordova.vibration": {
             "PACKAGE_NAME": "com.hmaleev.convertor"
         },
         "org.apache.cordova.splashscreen": {
             "PACKAGE_NAME": "com.hmaleev.convertor"
         },
-        "org.apache.cordova.vibration": {
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.hmaleev.convertor"
         }
     },

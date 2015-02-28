@@ -10,7 +10,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<meta name="msapplication-tap-highlight" content="no" />
 	
+	<link href="css/kendo.mobile.common.css" rel="stylesheet" />
     <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
+    
+	
     <script src="js/jquery.min.js"></script>
 	<script src="js/kendo.all.min.js"></script> 
 </head>
@@ -124,6 +127,27 @@
 	</style>
 	<span id="notification" style="display:none;"></span>
     <div data-role="view" id="drawer-distance" data-layout="drawer-layout" data-title="Distance">
+ <header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Distance</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="distanceValue" placeholder="Enter distance">
         <select id="originalDistanceUnit">	
@@ -155,6 +179,27 @@
 		</div>
     </div>
     <div data-role="view" id="drawer-speed" data-layout="drawer-layout" data-title="Speed">
+		<header data-role="header">
+			<div data-role="toolbar" data-items='[
+			{
+									id: "back",
+									type: "button",
+									icon: "drawer-button",
+									overflow: "never",
+									align: "left",
+									text: " Menu",
+									click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+								},
+								{ type: "button",
+								text: "Settings", 
+								overflow: "always", 
+								icon: "settings", 
+								enable: true,  
+								url: "#drawer-settings" }
+					]'>
+			  <span data-role="view-title" class="title">Speed</span>
+			</div>
+		</header>
         <p> Convert </p>
         <input type="number" id="speedValue" placeholder="Enter speed">
         <select id="originalSpeedUnit">
@@ -180,6 +225,27 @@
 		</div>
     </div>
     <div data-role="view" id="drawer-temperature" data-layout="drawer-layout" data-title="Temperature">
+	<header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Temperature</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="temperatureValue" placeholder="Enter temperature">
         <select id="originalTemperatureUnit">
@@ -199,6 +265,27 @@
 		</div>
     </div>
     <div data-role="view" id="drawer-power" data-layout="drawer-layout" data-title="Power">
+	<header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Power</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="powerValue" placeholder="Enter power">
         <select id="originalPowerUnit">
@@ -222,6 +309,27 @@
 		</div>
     </div>
     <div data-role="view" id="drawer-mass" data-layout="drawer-layout" data-title="Mass">
+	<header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Mass</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="massValue" placeholder="Enter mass">
         <select id="originalMassUnit">
@@ -253,6 +361,27 @@
 		</div>
     </div>
 	<div data-role="view" id="drawer-volume" data-layout="drawer-layout" data-title="Volume">
+	<header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Volume</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="volumeValue" placeholder="Enter volume">
         <select id="originalVolumeUnit">
@@ -295,6 +424,27 @@
 		</div>
     </div>
     <div data-role="view" id="drawer-area" data-layout="drawer-layout" data-title="Area">
+	<header data-role="header">
+    <div data-role="toolbar" data-items='[
+	{
+                            id: "back",
+                            type: "button",
+                            icon: "drawer-button",
+                            overflow: "never",
+                            align: "left",
+                            text: " Menu",
+							click: function(e){ $("#my-drawer").data("kendoMobileDrawer").show();}
+                        },
+                        { type: "button",
+						text: "Settings", 
+						overflow: "always", 
+						icon: "settings", 
+						enable: true,  
+						url: "#drawer-settings" }
+			]'>
+      <span data-role="view-title" class="title">Area</span>
+    </div>
+  </header>
         <p> Convert </p>
         <input type="number" id="areaValue" placeholder="Enter area">
         <select id="originalAreaUnit">
@@ -328,7 +478,8 @@
 		  <a data-role="button" class="convertBtn">Convert</a>
 		</div>
     </div>
-    <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settiings">
+    <div data-role="view" id="drawer-settings" data-layout="drawer-layout" data-title="Settings">
+
         <p>Significant digits after the decimal separator:</p>
         <select id="precision">
             <option>1</option>
@@ -350,6 +501,8 @@
             <option>Light</option>
 			<option>ios</option>
 			<option>ios7</option>
+			<option>Material</option>
+			<!-- <option>Material Dark</option> -->
         </select>
 		 <p id="warningMessage">IMPORTANT: The new theme will be applied after restart!</p>
         <!-- <button id="saveSettingsBtn">Save changes</button> -->
@@ -369,7 +522,7 @@
                     <li><a href="#drawer-temperature" data-transition="none">Temperature</a></li>
                     <li><a href="#drawer-speed" data-transition="none">Speed</a></li>
                     <li><a href="#drawer-power" data-transition="none">Power</a></li>
-                    <li><a href="#drawer-settings" data-transition="none">Settings</a></li>
+                    
                 </ul>
             </li>
         </ul>
@@ -416,31 +569,56 @@
     <script type="text/javascript" src="js/conversion.js"></script>
     <script>
         var theme = localStorage.getItem("theme");
-        if (theme ==="Dark") {
-            var app = new kendo.mobile.Application($(document.body), {
-                skin: "android-dark"
-            });
-            $(".km-text").css("color", "white");
-        }
-        if (theme === "Light") {
-            var app = new kendo.mobile.Application($(document.body), {
-                skin: "android-light"
-            });
-            $(".km-text").css("color", "black");
-        }
-		if (theme === "ios") {
-		  var app = new kendo.mobile.Application($(document.body), {
-                skin: "ios"
-            });
+		var app;
+		switch (theme){
+			case 'Dark' :{
+			    app = new kendo.mobile.Application($(document.body), {
+					skin: "android-dark"
+				});
+				$(".km-text").css("color", "white");
+				break;
+			}
+			case 'Light' :{
+			    app = new kendo.mobile.Application($(document.body), {
+					skin: "android-light"
+				});
+				$(".km-text").css("color", "black");
+				break;
+			}
+			case 'ios' :{
+			    app = new kendo.mobile.Application($(document.body), {
+					skin: "ios"
+				});
+
+				break;
+			}
+			case 'ios7' :{
+			    app = new kendo.mobile.Application($(document.body), {
+					skin: "ios7"
+				});
+				$(".km-text").css("color", "white");
+				break;
+			}
+			case 'Material' :{
+			    app = new kendo.mobile.Application($(document.body), {
+					skin: "material-light"
+				});
+				$(".k-input").css("color", "#000");
+				break;
+			}
+			 // case 'Material Dark' :{
+			    // app = new kendo.mobile.Application($(document.body), {
+					// skin: "material"
+				// });
+				// //$(".km-text").css("color", "white");
+				// break;
+			// } 
+			default :{
+			    var app = new kendo.mobile.Application($(document.body));
+				break;
+			}
 		}
-		if (theme === "ios7") {
-		  var app = new kendo.mobile.Application($(document.body), {
-                skin: "ios7"
-            });
-		}
-        if (theme === null) {
-            var app = new kendo.mobile.Application($(document.body));
-        }
+
     </script>
 </body>
 </html>
